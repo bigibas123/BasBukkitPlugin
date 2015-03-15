@@ -1,0 +1,9 @@
+name: BasBukkitPlugin
+main: ga.dingemans.bigibas123.BasBukkitPlugin.BasBukkitPlugin
+version: 0.1
+commands: 
+  BBP:
+    permission: basplugin.BBP
+    usage: /BBP
+    description: Main command of BasBukkitPlugin
+    permission-message: You dont have permission bitch!
