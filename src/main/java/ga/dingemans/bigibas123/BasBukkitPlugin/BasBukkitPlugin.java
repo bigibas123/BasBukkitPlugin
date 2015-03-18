@@ -2,7 +2,9 @@ package ga.dingemans.bigibas123.BasBukkitPlugin;
 
 import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
 import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.msgThreads.serverlist;
+import ga.dingemans.bigibas123.BasBukkitPlugin.util.Chatcreator;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.Messaging;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -35,12 +37,17 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("BBP")) {
             if (Reference.serverList == null) {
-                sender.sendMessage("please wait for the servers to be fetched");
-                if (!(Reference.serverlistthread.isAlive())) {
-                    Reference.serverlistthread.start();
-                    sender.sendMessage("Refetching for you");
-                    return true;
+                Chatcreator chatmsg = new Chatcreator(ChatColor.RED, "please wait for the servers to be fetched");
+                chatmsg.newLine();
+                sender.sendMessage(chatmsg.create());
+                if (Reference.serverlistthread.isAlive()) {
+                    //noinspection deprecation
+                    Reference.serverlistthread.stop();
                 }
+                Reference.serverlistthread.start();
+                chatmsg = new Chatcreator(ChatColor.RED, "Refetching for you...");
+                sender.sendMessage(chatmsg.create());
+                return true;
             } else if (Reference.menu == null) {
                 Reference.serverlistthread.createmenu();
             }
