@@ -7,4 +7,5 @@ help/merge requests greatly appreciated
 
 
 Commands:
+
   `/bbp` opens the interface
