@@ -1,8 +1,8 @@
 package ga.dingemans.bigibas123.BasBukkitPlugin.Reference.msgThreads;
 
 import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
+import ga.dingemans.bigibas123.BasBukkitPlugin.config.Config;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.IconMenu;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.LogHelper;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.Messaging;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.UEH;
 import org.bukkit.Material;
@@ -11,28 +11,37 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 
 public class serverlist extends Thread {
+    public int waitingtime;
+    @SuppressWarnings("FieldCanBeLocal")
+    private UncaughtExceptionHandler uncaughtExceptionHandler;
+
     @Override
     public void run() {
-        this.setPriority(MIN_PRIORITY);
-        this.setName("Servermenu creator");
-        this.setUncaughtExceptionHandler(new UEH());
-        Reference.serverList = null;
-        Messaging.send(new String[]{"GetServers"}, null);
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        do {
+            this.setPriority(MIN_PRIORITY);
+            this.setName("Servermenu creator");
+            this.uncaughtExceptionHandler = new UEH();
+            this.setUncaughtExceptionHandler(this.uncaughtExceptionHandler);
+            Reference.serverList = null;
+            Messaging.send(new String[]{"GetServers"}, null);
+            if (Reference.serverList != null) {
+                this.createmenu();
+            } else {
+                int waitingtime = 1000;
+                do {
+                    try {
+                        sleep(10);
+                    } catch (InterruptedException e) {
+                        this.uncaughtExceptionHandler.uncaughtException(this, e);
+                    }
+                    waitingtime--;
+                } while (waitingtime >= 0);
             }
-        if (Reference.serverList == null) {
-            this.run();
-        } else {
-            this.createmenu();
-        }
+        } while (Reference.menu == null);
     }
 
 
     public void createmenu() {
-        LogHelper.INFO("got servers");
         int slots;
         slots = Reference.serverList.length;
         int rest = slots % 9;
@@ -49,11 +58,21 @@ public class serverlist extends Thread {
         int i = 0;
         Random rnd = new Random();
         for (String server : Reference.serverList) {
-            ItemStack itms = new ItemStack(Material.STAINED_CLAY, 1);
-            itms.setDurability((short) rnd.nextInt(16));
+            String item = Config.getItem(server);
+            short dur = Config.getDurability(server);
+            if (item == null) {
+                item = Material.STAINED_CLAY.name();
+                dur = (short) rnd.nextInt(16);
+                Config.setItem(server, item);
+                Config.setDurability(server, dur);
+            }
+            Material mat = Material.getMaterial(item);
+            ItemStack itms = new ItemStack(mat, 1);
+            itms.setDurability(dur);
             menu.setOption(i, itms, server, "Connects you to the " + server + " server");
             i++;
         }
         Reference.menu = menu;
+        Reference.plugin.saveConfig();
     }
 }
