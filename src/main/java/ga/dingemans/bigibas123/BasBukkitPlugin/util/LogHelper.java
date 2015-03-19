@@ -6,9 +6,10 @@ import org.bukkit.Bukkit;
 
 import java.util.logging.Level;
 
-@SuppressWarnings("UnusedDeclaration")
+@SuppressWarnings({"UnusedDeclaration", "WeakerAccess"})
 public class LogHelper {
-    public static void log(Level logLevel, Object msg) {
+
+    private static void log(Level logLevel, Object msg) {
 
         Bukkit.getLogger().log(logLevel, "[" + Reference.plugin.getName() + "]" + msg, Reference.plugin);
 

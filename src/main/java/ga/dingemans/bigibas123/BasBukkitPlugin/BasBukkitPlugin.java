@@ -4,7 +4,9 @@ import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
 import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.msgThreads.serverlist;
 import ga.dingemans.bigibas123.BasBukkitPlugin.config.Config;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.Chatcreator;
+import ga.dingemans.bigibas123.BasBukkitPlugin.util.LogHelper;
 import ga.dingemans.bigibas123.BasBukkitPlugin.util.Messaging;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,12 +14,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener {
 
     @Override
     public void onEnable() {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
+        LogHelper.INFO("made by:" + Bukkit.getPlayer(Reference.myUUID).getDisplayName());
         Reference.plugin = this;
 
         Config.load();
@@ -34,7 +38,7 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
 
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        Messaging.recieve(channel, player, message);
+        Messaging.receive(channel, player, message);
     }
 
     @Override
@@ -49,7 +53,7 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
                 sender.sendMessage(chatmsg.create());
                 return true;
             } else if (Reference.menu == null) {
-                Reference.serverlistthread.createmenu();
+                Reference.serverlistthread.createMenu();
             }
             if (sender instanceof Player) {
                     //noinspection ConstantConditions

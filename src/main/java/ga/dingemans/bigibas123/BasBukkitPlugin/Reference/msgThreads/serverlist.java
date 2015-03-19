@@ -19,15 +19,15 @@ public class serverlist extends Thread {
     public void run() {
         do {
             this.setPriority(MIN_PRIORITY);
-            this.setName("Servermenu creator");
+            this.setName("ServerMenu creator");
             this.uncaughtExceptionHandler = new UEH();
             this.setUncaughtExceptionHandler(this.uncaughtExceptionHandler);
             Reference.serverList = null;
             Messaging.send(new String[]{"GetServers"}, null);
             if (Reference.serverList != null) {
-                this.createmenu();
+                this.createMenu();
             } else {
-                int waitingtime = 1000;
+                this.waitingtime = 1000;
                 do {
                     try {
                         sleep(10);
@@ -41,7 +41,7 @@ public class serverlist extends Thread {
     }
 
 
-    public void createmenu() {
+    public void createMenu() {
         int slots;
         slots = Reference.serverList.length;
         int rest = slots % 9;
@@ -67,9 +67,9 @@ public class serverlist extends Thread {
                 Config.setDurability(server, dur);
             }
             Material mat = Material.getMaterial(item);
-            ItemStack itms = new ItemStack(mat, 1);
-            itms.setDurability(dur);
-            menu.setOption(i, itms, server, "Connects you to the " + server + " server");
+            ItemStack itemstack = new ItemStack(mat, 1);
+            itemstack.setDurability(dur);
+            menu.setOption(i, itemstack, server, "Connects you to the " + server + " server");
             i++;
         }
         Reference.menu = menu;

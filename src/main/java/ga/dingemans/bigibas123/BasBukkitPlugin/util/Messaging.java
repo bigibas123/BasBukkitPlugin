@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 
-@SuppressWarnings("UnusedDeclaration")
+@SuppressWarnings({"UnusedDeclaration", "UnusedReturnValue"})
 public class Messaging {
-    public static void recieve(String channel, Player player, byte[] message) {
+    public static void receive(String channel, Player player, byte[] message) {
         if (!channel.equals("BungeeCord")) {
             return;
         }

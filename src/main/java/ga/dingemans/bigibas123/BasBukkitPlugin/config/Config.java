@@ -19,24 +19,25 @@ public class Config {
         plugin.reloadConfig();
     }
 
-    public static FileConfiguration getconfig() {
+    @SuppressWarnings("WeakerAccess")
+    public static FileConfiguration getConfig() {
         return plugin.getConfig();
     }
 
     public static String getItem(String server) {
-        return getconfig().getString("BasPlugin.items." + server + ".item");
+        return getConfig().getString("BasPlugin.items." + server + ".item");
     }
 
     public static short getDurability(String server) {
-        return (short) getconfig().getInt("BasPlugin.items." + server + ".durabiltiy");
+        return (short) getConfig().getInt("BasPlugin.items." + server + ".durability");
     }
 
     public static void setItem(String server, String item) {
-        getconfig().set("BasPlugin.items." + server + ".item", item);
+        getConfig().set("BasPlugin.items." + server + ".item", item);
 
     }
 
-    public static void setDurability(String server, short dura) {
-        getconfig().set("BasPlugin.items." + server + ".durabiltiy", dura);
+    public static void setDurability(String server, short dur) {
+        getConfig().set("BasPlugin.items." + server + ".durability", dur);
     }
 }

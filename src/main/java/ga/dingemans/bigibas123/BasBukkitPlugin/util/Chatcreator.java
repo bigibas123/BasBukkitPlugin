@@ -6,9 +6,10 @@ import org.bukkit.ChatColor;
 
 public class Chatcreator {
     private String message;
+    @SuppressWarnings("CanBeFinal")
     private String mainColour;
 
-    public Chatcreator(ChatColor Maincolour, String message) {
+    public Chatcreator(@SuppressWarnings("SameParameterValue") ChatColor Maincolour, String message) {
         this.mainColour = String.valueOf(ChatColor.COLOR_CHAR) + Maincolour.getChar();
         this.message = ChatColor.COLOR_CHAR + String.valueOf(ChatColor.GREEN) + "[" + Reference.plugin.getName() + "]" + mainColour + message;
     }

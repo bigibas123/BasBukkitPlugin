@@ -14,6 +14,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
 
+@SuppressWarnings({"CanBeFinal", "UnusedReturnValue"})
 public class IconMenu implements Listener {
 
     private String name;
@@ -24,7 +25,7 @@ public class IconMenu implements Listener {
     private String[] optionNames;
     private ItemStack[] optionIcons;
 
-    public IconMenu(String name, int size, OptionClickEventHandler handler, Plugin plugin) {
+    public IconMenu(@SuppressWarnings("SameParameterValue") String name, int size, OptionClickEventHandler handler, Plugin plugin) {
         this.name = name;
         this.size = size;
         this.handler = handler;
@@ -50,7 +51,7 @@ public class IconMenu implements Listener {
         player.openInventory(inventory);
     }
 
-    public void destroy() {
+    private void destroy() {
         HandlerList.unregisterAll(this);
         handler = null;
         plugin = null;
@@ -113,6 +114,7 @@ public class IconMenu implements Listener {
             return player;
         }
 
+        @SuppressWarnings("UnusedDeclaration")
         public int getPosition() {
             return position;
         }
@@ -129,10 +131,11 @@ public class IconMenu implements Listener {
             return destroy;
         }
 
-        public void setWillClose(boolean close) {
+        public void setWillClose(@SuppressWarnings("SameParameterValue") boolean close) {
             this.close = close;
         }
 
+        @SuppressWarnings("UnusedDeclaration")
         public void setWillDestroy(boolean destroy) {
             this.destroy = destroy;
         }
