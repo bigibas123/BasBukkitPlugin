@@ -6,20 +6,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Config {
-    private static JavaPlugin plugin = Reference.plugin;
+    private static final JavaPlugin plugin = Reference.plugin;
 
     public static void load() {
         plugin.saveConfig();
-        //reload();
     }
-
-    @SuppressWarnings("UnusedDeclaration")
-    public static void reload() {
-        plugin = Reference.plugin;
-        plugin.reloadConfig();
-    }
-
-    @SuppressWarnings("WeakerAccess")
     public static FileConfiguration getConfig() {
         return plugin.getConfig();
     }

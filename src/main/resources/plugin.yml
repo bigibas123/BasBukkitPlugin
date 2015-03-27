@@ -6,4 +6,4 @@ commands:
     permission: basplugin.BBP
     usage: /BBP
     description: Main command of BasBukkitPlugin
-    permission-message: You dont have permission bitch!
+    permission-message: You don't have permission bitch!

@@ -9,20 +9,19 @@ import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
-@SuppressWarnings({"UnusedDeclaration", "UnusedReturnValue"})
 public class Messaging {
     public static void receive(String channel, Player player, byte[] message) {
+        player.getDisplayName();//unusedDeclaration annoying
         if (!channel.equals("BungeeCord")) {
             return;
         }
         ByteArrayDataInput in = ByteStreams.newDataInput(message);
         String subchannel = in.readUTF();
+        LogHelper.FINE("Received message from:" + subchannel);
+
         if (subchannel.equals("GetServers")) {
-            String[] serverList = in.readUTF().split(", ");
-            LogHelper.INFO(Arrays.toString(serverList));
-            Reference.serverList = serverList;
+            Reference.serverList = in.readUTF().split(", ");
+            Reference.ServerListGenerated.countDown();
         }
     }
     public static boolean send(String[] args, Player player) {
