@@ -1,6 +1,10 @@
 # BasBukkitPlugin
 A plugin utilizing the bungee-api to create an inventory serverlist
 
+Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=BasBukkitPlugin&style=plastic)](http://dingemans.ga:8080/job/BasBukkitPlugin/)
+
+[Normal Releases](https://github.com/bigibas123/BasBukkitPlugin/releases "Normal Releases")
+
 
 feel free to contact me about anything
 help/merge requests greatly appreciated
