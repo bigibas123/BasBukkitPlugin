@@ -1,11 +1,11 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin.util;
+package ga.dingemans.bigibas123.ServerChangeGui.util;
 
 import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import ga.dingemans.bigibas123.BasBukkitPlugin.BasBukkitPlugin;
-import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
+import ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui;
+import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -34,7 +34,7 @@ public class Messaging {
         }
 
         if (player != null) {
-            player.sendPluginMessage(BasBukkitPlugin.getProvidingPlugin(BasBukkitPlugin.class), "BungeeCord", out.toByteArray());
+            player.sendPluginMessage(ServerChangeGui.getProvidingPlugin(ServerChangeGui.class), "BungeeCord", out.toByteArray());
             return true;
         } else {
             return false;

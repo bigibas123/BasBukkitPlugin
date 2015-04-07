@@ -12,12 +12,12 @@ help/merge requests greatly appreciated
 
 ##Commands:
 
-  `/bbp` opens the interface
+  `/SCG` opens the interface, permission: SCG.use
 
 
 ##Example config
 ```YAML
-BasPlugin:
+SCG:
   items:
     main:
       item: STAINED_CLAY

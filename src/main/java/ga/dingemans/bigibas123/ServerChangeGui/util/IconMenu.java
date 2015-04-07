@@ -1,4 +1,4 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin.util;
+package ga.dingemans.bigibas123.ServerChangeGui.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

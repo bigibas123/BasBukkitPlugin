@@ -1,10 +1,10 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin;
+package ga.dingemans.bigibas123.ServerChangeGui;
 
-import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
-import ga.dingemans.bigibas123.BasBukkitPlugin.Threads.MainBasPlugin;
-import ga.dingemans.bigibas123.BasBukkitPlugin.config.Config;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.Chatcreator;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.Messaging;
+import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import ga.dingemans.bigibas123.ServerChangeGui.Threads.SCGmain;
+import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
+import ga.dingemans.bigibas123.ServerChangeGui.util.Chatcreator;
+import ga.dingemans.bigibas123.ServerChangeGui.util.Messaging;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
-public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener {
+public class ServerChangeGui extends JavaPlugin implements PluginMessageListener {
 
     @Override
     public void onEnable() {
@@ -21,8 +21,8 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
         this.getServer().getPluginManager().registerEvents(new Listeners(), this);
         Reference.plugin = this;
 
-        Config.load();
-        Reference.mainBasPlugin = new MainBasPlugin();
+        Config.save();
+        Reference.SCGmain = new SCGmain();
     }
 
 
@@ -43,7 +43,7 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("BBP")) {
+        if (cmd.getName().equalsIgnoreCase("SCG")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (Reference.ServerListGenerated.getCount() == 1) {
@@ -54,14 +54,14 @@ public class BasBukkitPlugin extends JavaPlugin implements PluginMessageListener
                     player.sendMessage(cc.create());
                     return true;
                 } else if (Reference.ServerItemMapGenerated.getCount() == 1) {
-                    Reference.mainBasPlugin.createServerItemMap();
+                    Reference.SCGmain.createServerItemMap();
                     Chatcreator cc = new Chatcreator(ChatColor.RED, "ServerItemMap not generated");
                     cc.newLine();
                     cc.append("Generating for you", ChatColor.DARK_GREEN);
                     player.sendMessage(cc.create());
                     return true;
                 } else if (Reference.menu == null) {
-                    Reference.mainBasPlugin.createMenu();
+                    Reference.SCGmain.createMenu();
                     Chatcreator cc = new Chatcreator(ChatColor.RED, "Menu not created");
                     cc.newLine();
                     cc.append("Creating for you", ChatColor.DARK_GREEN);

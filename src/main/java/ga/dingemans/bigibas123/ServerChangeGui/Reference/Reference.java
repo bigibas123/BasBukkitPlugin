@@ -1,8 +1,8 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin.Reference;
+package ga.dingemans.bigibas123.ServerChangeGui.Reference;
 
 
-import ga.dingemans.bigibas123.BasBukkitPlugin.Threads.MainBasPlugin;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.IconMenu;
+import ga.dingemans.bigibas123.ServerChangeGui.Threads.SCGmain;
+import ga.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,5 +18,5 @@ public class Reference {
     public static Map<String, ItemStack> serverMap;
     public static IconMenu menu = null;
     public static JavaPlugin plugin;
-    public static MainBasPlugin mainBasPlugin;
+    public static SCGmain SCGmain;
 }

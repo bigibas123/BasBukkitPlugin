@@ -3,7 +3,7 @@ main: ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
 version: 1.0
 commands: 
   SCG:
-    permission: ServerChangeGui.use
+    permission: SCG.use
     usage: /SCG
     description: Main command of ServerChangeGui
-    permission-message: You don't have permission ServerChangeGui.use on this server!
+    permission-message: You don't have permission &bServerChangeGui.use on this server!

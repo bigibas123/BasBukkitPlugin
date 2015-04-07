@@ -1,7 +1,7 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin.util;
+package ga.dingemans.bigibas123.ServerChangeGui.util;
 
 
-import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
+import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import org.bukkit.Bukkit;
 
 import java.util.logging.Level;

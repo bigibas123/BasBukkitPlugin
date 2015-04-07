@@ -1,17 +1,17 @@
-package ga.dingemans.bigibas123.BasBukkitPlugin.Threads;
+package ga.dingemans.bigibas123.ServerChangeGui.Threads;
 
 
-import ga.dingemans.bigibas123.BasBukkitPlugin.Reference.Reference;
-import ga.dingemans.bigibas123.BasBukkitPlugin.config.Config;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.IconMenu;
-import ga.dingemans.bigibas123.BasBukkitPlugin.util.Messaging;
+import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
+import ga.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
+import ga.dingemans.bigibas123.ServerChangeGui.util.Messaging;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainBasPlugin extends Thread {
+public class SCGmain extends Thread {
 
     public void run() {
         this.setPriority(MIN_PRIORITY);//i don't care if it runs slowly
