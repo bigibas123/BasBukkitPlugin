@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="BasBukkitPlugin" />
+        <module name="ServerChangeGui" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BasBukkitPlugin" target="1.7" />
+      <module name="ServerChangeGui" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

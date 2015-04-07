@@ -1,9 +1,9 @@
-name: BasBukkitPlugin
-main: ga.dingemans.bigibas123.BasBukkitPlugin.BasBukkitPlugin
-version: 0.1
+name: ServerChangeGui
+main: ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
+version: 1.0
 commands: 
-  BBP:
-    permission: basplugin.BBP
-    usage: /BBP
-    description: Main command of BasBukkitPlugin
-    permission-message: You don't have permission bitch!
+  SCG:
+    permission: ServerChangeGui.use
+    usage: /SCG
+    description: Main command of ServerChangeGui
+    permission-message: You don't have permission ServerChangeGui.use on this server!
