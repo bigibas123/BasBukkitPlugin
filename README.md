@@ -1,9 +1,9 @@
-# BasBukkitPlugin
+# ServerChangeGui
 A plugin utilizing the bungee-api to create an inventory serverlist
 
-Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=BasBukkitPlugin/ga.dingemans.bigibas123:BasBukkitPlugin)](http://dingemans.ga:8080/job/BasBukkitPlugin/ga.dingemans.bigibas123$BasBukkitPlugin/)
+Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=ServerChangeGui)](http://dingemans.ga:8080/job/ServerChangeGui)
 
-[Normal Releases](https://github.com/bigibas123/BasBukkitPlugin/releases "Normal Releases")
+[Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
 
 
 feel free to contact me about anything
