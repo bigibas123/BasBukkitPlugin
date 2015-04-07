@@ -1,7 +1,7 @@
 # ServerChangeGui
 A plugin utilizing the bungee-api to create an inventory serverlist
 
-Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=ServerChangeGui)](http://dingemans.ga:8080/job/ServerChangeGui)
+Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=ServerChangeGui/ga.dingemans.bigibas123:ServerChangeGui)](http://dingemans.ga:8080/job/ServerChangeGui/ga.dingemans.bigibas123:ServerChangeGui)
 
 [Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
 
