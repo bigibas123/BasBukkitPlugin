@@ -22,6 +22,7 @@ public class SCGmain extends Thread {
             e.printStackTrace();
             this.isInterrupted();
         }
+        this.fetchplayercount();
         this.createServerItemMap();
         try {
             Reference.ServerItemMapGenerated.await();
@@ -43,7 +44,11 @@ public class SCGmain extends Thread {
                 dur = (short) Reference.rnd.nextInt(16);
             }
             Material mat = Material.getMaterial(item);
-            ItemStack itemstack = new ItemStack(mat, 1, dur);
+            Integer amnt = Reference.playercount.get(server);
+            if (amnt == null) {
+                amnt = 0;
+            }
+            ItemStack itemstack = new ItemStack(mat, amnt, dur);
             Reference.serverMap.put(server, itemstack);
             Config.setItem(server, item);
             Config.setDurability(server, dur);
@@ -71,11 +76,18 @@ public class SCGmain extends Thread {
         }, Reference.plugin);
         Map<String, ItemStack> serverMap = Reference.serverMap;
         int i = 0;
-        for (Map.Entry<String, ItemStack> entry : serverMap.entrySet()) {
-            menu.setOption(i, entry.getValue(), entry.getKey(), "Connects you to the " + entry.getKey() + " server");
+        for (Map.Entry<String, ItemStack> server : serverMap.entrySet()) {
+            menu.setOption(i, server.getValue(), server.getKey(), "Connects you to the " + server.getKey() + " server");
             i++;
         }
         Reference.menu = menu;
+        Reference.listupdated = false;
+    }
+
+    public void fetchplayercount() {
+        for (String server : Reference.serverList) {
+            Messaging.send(new String[]{"PlayerCount", server}, null);
+        }
     }
 
 }

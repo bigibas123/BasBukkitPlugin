@@ -16,7 +16,9 @@ public class Reference {
     public static final Random rnd = new Random(System.currentTimeMillis());
     public static String[] serverList = null;
     public static Map<String, ItemStack> serverMap;
+    public static Map<String, Integer> playercount;
     public static IconMenu menu = null;
     public static JavaPlugin plugin;
     public static SCGmain SCGmain;
+    public static boolean listupdated = false;
 }

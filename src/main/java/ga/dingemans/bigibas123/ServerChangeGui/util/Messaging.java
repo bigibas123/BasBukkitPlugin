@@ -4,8 +4,8 @@ import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui;
 import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -18,10 +18,17 @@ public class Messaging {
         ByteArrayDataInput in = ByteStreams.newDataInput(message);
         String subchannel = in.readUTF();
         LogHelper.FINE("Received message from:" + subchannel);
-
         if (subchannel.equals("GetServers")) {
             Reference.serverList = in.readUTF().split(", ");
             Reference.ServerListGenerated.countDown();
+        } else if (subchannel.equals("PlayerCount")) {
+            String server = in.readUTF();
+            int playercount = in.readInt();
+            if (Reference.playercount.get(server) == null || Reference.playercount.get(server) != playercount) {
+                Reference.playercount.put(server, playercount);
+                Reference.listupdated = true;
+            }
+
         }
     }
     public static boolean send(String[] args, Player player) {
