@@ -33,3 +33,7 @@ SCG:
 
 as example the `main:` part show the `item` as stained clay with durability `4` is a yellow stained clay block
 for item names see https://hub.spigotmc.org/javadocs/bukkit/index.html?org/bukkit/material/package-summary.html under `Class Summary` and durability's http://minecraft-ids.grahamedgecombe.com/
+
+
+##Credits
+nisovin:[Icon Menu class](http://bukkit.org/threads/icon-menu.108342/) [Bukkit Profile](http://bukkit.org/members/nisovin.2980/)
