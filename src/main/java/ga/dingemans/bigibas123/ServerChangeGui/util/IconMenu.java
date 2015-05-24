@@ -1,3 +1,9 @@
+/*
+Credit to nisovin for this class
+http://bukkit.org/threads/icon-menu.108342/
+http://bukkit.org/members/nisovin.2980/
+*/
+
 package ga.dingemans.bigibas123.ServerChangeGui.util;
 
 import org.bukkit.Bukkit;
