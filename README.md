@@ -20,19 +20,19 @@ help/merge requests greatly appreciated
 ```YAML
 SCG:
   items:
-    main:
-      item: STAINED_CLAY
-      durability: 4
-    skywars:
-      item: STAINED_CLAY
-      durability: 5
-    joran:
+    lobby:
       item: STAINED_CLAY
       durability: 6
+      location: 1
+      lore:
+      - Connects you to the lobby server
+      customName: To hub
+  general:
+    menuName: I AM GUI
+
 ```
 
-as example the `main:` part show the `item` as stained clay with durability `4` is a yellow stained clay block
-for item names see https://hub.spigotmc.org/javadocs/bukkit/index.html?org/bukkit/material/package-summary.html under `Class Summary` and durability's http://minecraft-ids.grahamedgecombe.com/
+for item names see https://gist.githubusercontent.com/bigibas123/aea44ec5eea0104cb062/raw/7e07891cccf97c6672c1ecd4cf7af47ef6c27f3e/BukkitMaterials and durability's http://minecraft-ids.grahamedgecombe.com/
 
 
 ##Credits
