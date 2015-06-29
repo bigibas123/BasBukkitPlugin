@@ -5,9 +5,12 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
-import ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Messaging {
     public static void receive(String channel, Player player, byte[] message) {
@@ -19,18 +22,30 @@ public class Messaging {
         String subchannel = in.readUTF();
         LogHelper.FINE("Received message from:" + subchannel);
         if (subchannel.equals("GetServers")) {
-            Reference.serverList = in.readUTF().split(", ");
+            Reference.serverList = new ArrayList<>();
+            String[] tempservers = in.readUTF().split(", ");
+            Collections.addAll(Reference.serverList, tempservers);
             Reference.ServerListGenerated.countDown();
         } else if (subchannel.equals("PlayerCount")) {
             String server = in.readUTF();
             int playercount = in.readInt();
-            if (Reference.playercount.get(server) == null || Reference.playercount.get(server) != playercount) {
-                Reference.playercount.put(server, playercount);
-                Reference.listupdated = true;
+            ServerInfo serverinf = Reference.serverMap.get(server);
+            if (serverinf == null) {
+                if (!Reference.serverList.contains(server)) {
+                    Reference.serverList.add(server);
+                    Reference.listupdated.countDown();
+                }
             }
+            if (serverinf != null) {
+                ItemStack itm = serverinf.getItem();
+                itm.setAmount(playercount);
+                serverinf.setItem(itm);
+            }
+            Reference.listupdated.countDown();
 
         }
     }
+
     public static boolean send(String[] args, Player player) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         for (String arg : args) {
@@ -41,7 +56,7 @@ public class Messaging {
         }
 
         if (player != null) {
-            player.sendPluginMessage(ServerChangeGui.getProvidingPlugin(ServerChangeGui.class), "BungeeCord", out.toByteArray());
+            player.sendPluginMessage(Reference.plugin, "BungeeCord", out.toByteArray());
             return true;
         } else {
             return false;

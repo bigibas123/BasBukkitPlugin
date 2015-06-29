@@ -1,6 +1,6 @@
 name: ServerChangeGui
 main: ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
-version: 1.0
+version: 1.2
 commands: 
   SCG:
     permission: SCG.use

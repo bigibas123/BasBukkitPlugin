@@ -1,7 +1,6 @@
 package ga.dingemans.bigibas123.ServerChangeGui;
 
 import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
-import ga.dingemans.bigibas123.ServerChangeGui.Threads.SCGmain;
 import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
 import ga.dingemans.bigibas123.ServerChangeGui.util.Chatcreator;
 import ga.dingemans.bigibas123.ServerChangeGui.util.Messaging;
@@ -12,8 +11,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
-import java.util.HashMap;
-
 public class ServerChangeGui extends JavaPlugin implements PluginMessageListener {
 
     @Override
@@ -22,9 +19,8 @@ public class ServerChangeGui extends JavaPlugin implements PluginMessageListener
         this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
         this.getServer().getPluginManager().registerEvents(new Listeners(), this);
         Reference.plugin = this;
-        Reference.playercount = new HashMap<>();
         Config.save();
-        Reference.SCGmain = new SCGmain();
+        Reference.SCGmain = new SCGMain();
     }
 
 
@@ -36,7 +32,7 @@ public class ServerChangeGui extends JavaPlugin implements PluginMessageListener
     public void onDisable() {
         this.getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
         this.getServer().getMessenger().unregisterIncomingPluginChannel(this, "BungeeCord", this);
-        if (!Reference.SCGmain.isInterrupted()) {
+        if (!Reference.SCGmain.isInterrupted() || !Reference.SCGmain.isAlive()) {
             Reference.SCGmain.interrupt();
         }
 
@@ -50,47 +46,50 @@ public class ServerChangeGui extends JavaPlugin implements PluginMessageListener
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("SCG")) {
+            Chatcreator cc = new Chatcreator(ChatColor.GREEN, "");
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                Reference.SCGmain.fetchplayercount();
+                Messaging.send(new String[]{"GetServers"}, player);
                 if (Reference.ServerListGenerated.getCount() == 1) {
+                    cc.append("Serverlist not fetched", ChatColor.RED);
+                    cc.newLine();
+                    cc.append("Fetching for you...", ChatColor.GREEN);
+                    cc.newLine();
+                    cc.append("Please rerun the command", ChatColor.YELLOW);
+                    player.sendMessage(cc.create());
                     Messaging.send(new String[]{"GetServers"}, player);
-                    Chatcreator cc = new Chatcreator(ChatColor.RED, "Servers not fetched");
-                    cc.newLine();
-                    cc.append("Fetching for you", ChatColor.DARK_GREEN);
-                    cc.newLine();
-                    cc.append("Please re-execute the command", ChatColor.YELLOW);
-                    player.sendMessage(cc.create());
                     return true;
-                }
-                if (Reference.ServerItemMapGenerated.getCount() == 1) {
-                    Reference.SCGmain.createServerItemMap();
-                    Chatcreator cc = new Chatcreator(ChatColor.RED, "ServerItemMap not generated");
-                    cc.newLine();
-                    cc.append("Generating for you", ChatColor.DARK_GREEN);
-                    player.sendMessage(cc.create());
-                }
-                if (Reference.menu == null) {
-                    Reference.SCGmain.createMenu();
-                    Chatcreator cc = new Chatcreator(ChatColor.RED, "Menu not created");
-                    cc.newLine();
-                    cc.append("Creating for you", ChatColor.DARK_GREEN);
-                    player.sendMessage(cc.create());
-                }
-                if (Reference.listupdated) {
-                    Reference.SCGmain.createServerItemMap();
-                    Reference.SCGmain.createMenu();
+                } else if (Reference.menu == null) {
+                    if (!Reference.SCGmain.isAlive()) {
+                        cc.append("Menu not Created", ChatColor.RED);
+                        cc.newLine();
+                        cc.append("Creating For you...", ChatColor.GREEN);
+                        cc.newLine();
+                        cc.append("Please rerun the command", ChatColor.YELLOW);
+                        player.sendMessage(cc.create());
+                        Reference.SCGmain = new SCGMain();
+                        return true;
+                    } else {
+                        cc.append("Menu Creation Currently running", ChatColor.RED);
+                        cc.newLine();
+                        cc.append("Please wait", ChatColor.GREEN);
+                        player.sendMessage(cc.create());
+                        return true;
+                    }
                 }
 
-                    Reference.menu.open(player);
-                    return true;
+                if (Reference.listupdated.getCount() == 0 && !Reference.SCGmain.isAlive()) {
+                    Reference.SCGmain = new SCGMain();
+                }
 
+                Reference.menu.open(player);
+                return true;
             } else {
-                Chatcreator cc = new Chatcreator(ChatColor.RED, "This command is only for players");
+                cc.append("This command is only for players", ChatColor.RED);
                 cc.newLine();
-                cc.append("You are:" + sender.getName(), null);
+                cc.append("You are:" + sender.getName(), ChatColor.RED);
                 cc.newLine();
-                cc.append("Type:" + sender.toString(), null);
+                cc.append("Type:" + sender.toString(), ChatColor.RED);
                 sender.sendMessage(cc.create());
                 return true;
             }
