@@ -23,12 +23,19 @@ SCG:
     lobby:
       item: STAINED_CLAY
       durability: 6
-      location: 1
+      location: 0
       lore:
       - Connects you to the lobby server
       customName: To hub
+    skywars:
+      item: GRASS
+      durability: 0
+      location: 1
+      lore:
+      - Connects you to the skywars server
+      customName: Skywars
   general:
-    menuName: I AM GUI
+    menuName: Servers
 
 ```
 
