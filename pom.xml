@@ -33,6 +33,15 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+			<resource>
+				<directory></directory>
+				<includes>
+					<include>License.txt</include>
+					<include>OPL_1_0.TXT</include>
+				</includes>
+			</resource>
+		</resources>
     </build>
 
     <repositories>
@@ -55,7 +64,7 @@
 
     <developers>
         <developer>
-            <name>bigibas123</name>
+            <name>Sebastiaan Dingemans "bigibas123"</name>
             <email>sebastiaandingemans@gmail.com</email>
         </developer>
     </developers>
