@@ -46,8 +46,8 @@ public class Config {
         getConfig().set("SCG.items." + server + ".lore", lore);
     }
 
-    public static List<?> getLore(String server) {
-        return getConfig().getList("SCG.items." + server + ".lore");
+    public static List<String> getLore(String server) {
+        return getConfig().getStringList("SCG.items." + server + ".lore");
     }
 
     public static void setName(String server, String customName) {

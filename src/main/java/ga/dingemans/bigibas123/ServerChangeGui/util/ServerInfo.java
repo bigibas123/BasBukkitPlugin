@@ -2,6 +2,8 @@ package ga.dingemans.bigibas123.ServerChangeGui.util;
 
 import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -11,13 +13,13 @@ import java.util.List;
 
 
 public class ServerInfo {
-    private String name;
-    private ItemStack item;
-    private String itemmaterial;
-    private short durability;
-    private int location;
-    private List<String> lore;
-    private String customname;
+    @Getter @Setter private String name;
+    @Getter @Setter private ItemStack item;
+    @Getter @Setter private String itemmaterial;
+    @Getter @Setter private short durability;
+    @Getter @Setter private int location;
+    @Getter @Setter private List<String> lore;
+    @Getter @Setter private String customname;
 
     public ServerInfo(String name) {
         this.name = name;
@@ -34,8 +36,7 @@ public class ServerInfo {
         checkLocation();
         this.customname = Config.getName(this.name);
         checkCustomName();
-        //noinspection unchecked
-        this.lore = (List<String>) Config.getLore(this.name);
+        this.lore =  Config.getLore(this.name);
         checkLore();
         ItemMeta itemmet = this.item.getItemMeta();
         itemmet.setDisplayName(this.customname);
@@ -101,53 +102,4 @@ public class ServerInfo {
         Config.setName(this.name, this.customname);
         Config.save();
     }
-
-    public String getCustomname() {
-        return customname;
-    }
-
-    public void setCustomname(String customname) {
-        this.customname = customname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ItemStack getItem() {
-        return item;
-    }
-
-    public void setItem(ItemStack item) {
-        this.item = item;
-    }
-
-    public short getDurability() {
-        return durability;
-    }
-
-    public void setDurability(short durability) {
-        this.durability = durability;
-    }
-
-    public int getLocation() {
-        return location;
-    }
-
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    public String[] getLore() {
-        return lore.toArray(new String[lore.size()]);
-    }
-
-    public void setLore(ArrayList<String> lore) {
-        this.lore = lore;
-    }
-
 }
