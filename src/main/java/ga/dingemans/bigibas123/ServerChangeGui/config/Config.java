@@ -65,4 +65,13 @@ public class Config {
     public static void setMenuName(String name) {
         getConfig().set("SCG.general.menuName", name);
     }
+
+    public static long getCallDelay() {
+        Long l = getConfig().getLong("SCG.general.messageCallDelayInTicks");
+        if (l == 0) {
+            l = 25L;
+            getConfig().set("SCG.general.messageCallDelayInTicks", l);
+        }
+        return l;
+    }
 }

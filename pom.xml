@@ -6,7 +6,7 @@
 
     <groupId>ga.dingemans.bigibas123</groupId>
     <artifactId>ServerChangeGui</artifactId>
-    <version>1.2</version>
+    <version>1.2.1</version>
 
     <build>
         <plugins>
@@ -35,12 +35,18 @@
         </plugins>
         <resources>
 			<resource>
-				<directory></directory>
+                <directory>.</directory>
 				<includes>
 					<include>License.txt</include>
 					<include>OPL_1_0.TXT</include>
 				</includes>
 			</resource>
+            <resource>
+                <directory>./src/main/resources</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
 		</resources>
     </build>
 
@@ -58,6 +64,12 @@
             <artifactId>bukkit</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
             <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.6</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
