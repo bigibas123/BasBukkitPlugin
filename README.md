@@ -1,7 +1,5 @@
 # ServerChangeGui
-A plugin utilizing the bungee-api to create an inventory serverlist
-
-Jenkins Dev version:[![Build Status](http://dingemans.ga:8080/buildStatus/icon?job=ServerChangeGui/ga.dingemans.bigibas123:ServerChangeGui)](http://dingemans.ga:8080/job/ServerChangeGui/ga.dingemans.bigibas123:ServerChangeGui/)
+A plugin utilising the bungee-API to create an inventory server list
 
  [Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
 
@@ -39,7 +37,7 @@ SCG:
 
 ```
 
-for item names see https://gist.githubusercontent.com/bigibas123/aea44ec5eea0104cb062/raw/7e07891cccf97c6672c1ecd4cf7af47ef6c27f3e/BukkitMaterials and durability's http://minecraft-ids.grahamedgecombe.com/
+for the item names see https://gist.githubusercontent.com/bigibas123/aea44ec5eea0104cb062/raw/7e07891cccf97c6672c1ecd4cf7af47ef6c27f3e/BukkitMaterials and durability's http://minecraft-ids.grahamedgecombe.com/
 
 
 ##Credits

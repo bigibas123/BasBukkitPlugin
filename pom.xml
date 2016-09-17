@@ -34,20 +34,20 @@
             </plugin>
         </plugins>
         <resources>
-			<resource>
-                <directory>.</directory>
-				<includes>
-					<include>License.txt</include>
-					<include>OPL_1_0.TXT</include>
-				</includes>
-			</resource>
+		<resource>
+                	<directory>.</directory>
+			<includes>
+				<include>License.txt</include>
+				<include>OPL_1_0.TXT</include>
+			</includes>
+		</resource>
             <resource>
                 <directory>./src/main/resources</directory>
                 <includes>
                     <include>plugin.yml</include>
                 </includes>
             </resource>
-		</resources>
+	</resources>
     </build>
 
     <repositories>
@@ -76,8 +76,8 @@
 
     <developers>
         <developer>
-            <name>Sebastiaan Dingemans "bigibas123"</name>
-            <email>sebastiaandingemans@gmail.com</email>
+            <name>bigibas123</name>
+            <email></email>
         </developer>
     </developers>
 
