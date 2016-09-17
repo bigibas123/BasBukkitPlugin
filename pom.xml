@@ -34,20 +34,20 @@
             </plugin>
         </plugins>
         <resources>
-			<resource>
-                <directory>.</directory>
-				<includes>
-					<include>License.txt</include>
-					<include>OPL_1_0.TXT</include>
-				</includes>
-			</resource>
+		<resource>
+                	<directory>.</directory>
+			<includes>
+				<include>License.txt</include>
+				<include>OPL_1_0.TXT</include>
+			</includes>
+		</resource>
             <resource>
                 <directory>./src/main/resources</directory>
                 <includes>
                     <include>plugin.yml</include>
                 </includes>
             </resource>
-		</resources>
+	</resources>
     </build>
 
     <repositories>
