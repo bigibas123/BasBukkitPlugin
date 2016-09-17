@@ -1,7 +1,7 @@
-package ga.dingemans.bigibas123.ServerChangeGui.util;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.util;
 
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
-import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.config.Config;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
@@ -18,7 +18,7 @@ public class ServerInfo {
     @Getter @Setter private String itemmaterial;
     @Getter @Setter private short durability;
     @Getter @Setter private int location;
-    @Getter @Setter private List<String> lore;
+            @Setter private List<String> lore;
     @Getter @Setter private String customname;
 
     public ServerInfo(String name) {
@@ -101,5 +101,8 @@ public class ServerInfo {
         Config.setLore(this.name, this.lore);
         Config.setName(this.name, this.customname);
         Config.save();
+    }
+    public String[] getLore(){
+        return lore.toArray(new String[lore.size()]);
     }
 }

@@ -1,7 +1,7 @@
-package ga.dingemans.bigibas123.ServerChangeGui.config;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.config;
 
 
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,9 +1,9 @@
-package ga.dingemans.bigibas123.ServerChangeGui;
+package com.mooo.dingemans.bigibas123.ServerChangeGui;
 
 
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
-import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
-import ga.dingemans.bigibas123.ServerChangeGui.util.Messaging;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.config.Config;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.Messaging;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;

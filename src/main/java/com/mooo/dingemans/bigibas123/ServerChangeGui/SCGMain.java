@@ -1,12 +1,12 @@
-package ga.dingemans.bigibas123.ServerChangeGui;
+package com.mooo.dingemans.bigibas123.ServerChangeGui;
 
 
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
-import ga.dingemans.bigibas123.ServerChangeGui.config.Config;
-import ga.dingemans.bigibas123.ServerChangeGui.util.Chatcreator;
-import ga.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
-import ga.dingemans.bigibas123.ServerChangeGui.util.Messaging;
-import ga.dingemans.bigibas123.ServerChangeGui.util.ServerInfo;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.config.Config;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.Chatcreator;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.Messaging;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.ServerInfo;
 import org.bukkit.ChatColor;
 
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class SCGMain extends Thread {
         this.createMenu();
     }
 
-    public void createMenu() {
+    private void createMenu() {
         Integer maxspot = -1;
         for (Integer i : Reference.spots.keySet()) {
             if (maxspot < i) {

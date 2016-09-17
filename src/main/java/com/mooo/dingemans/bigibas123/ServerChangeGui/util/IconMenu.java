@@ -4,7 +4,7 @@ http://bukkit.org/threads/icon-menu.108342/
 http://bukkit.org/members/nisovin.2980/
 */
 
-package ga.dingemans.bigibas123.ServerChangeGui.util;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

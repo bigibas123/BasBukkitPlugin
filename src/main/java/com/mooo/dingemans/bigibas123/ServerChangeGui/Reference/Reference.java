@@ -1,9 +1,9 @@
-package ga.dingemans.bigibas123.ServerChangeGui.Reference;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.Reference;
 
 
-import ga.dingemans.bigibas123.ServerChangeGui.SCGMain;
-import ga.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
-import ga.dingemans.bigibas123.ServerChangeGui.util.ServerInfo;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.IconMenu;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.util.ServerInfo;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.SCGMain;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;

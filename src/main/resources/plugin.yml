@@ -1,5 +1,5 @@
 name: ServerChangeGui
-main: ga.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
+main: ServerChangeGui
 version: 1.2
 commands: 
   SCG:

@@ -1,7 +1,7 @@
-package ga.dingemans.bigibas123.ServerChangeGui.util;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.util;
 
 
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import org.bukkit.ChatColor;
 
 public class Chatcreator {

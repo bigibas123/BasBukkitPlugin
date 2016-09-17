@@ -1,10 +1,10 @@
-package ga.dingemans.bigibas123.ServerChangeGui.util;
+package com.mooo.dingemans.bigibas123.ServerChangeGui.util;
 
 import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import ga.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
