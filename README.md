@@ -1,7 +1,7 @@
 # ServerChangeGui
 A plugin utilising the bungee-API to create an inventory server list
 
-![Build Status](http://ci.dingemans.mooo.com:8080/buildStatus/icon?job=BigiBukkitLib&style=plastic)
+![Build Status](http://ci.dingemans.mooo.com:8080/buildStatus/icon?job=ServerChangeGui&style=plastic)
 
  [Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
 
