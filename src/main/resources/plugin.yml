@@ -1,6 +1,6 @@
 name: ServerChangeGui
 main: ServerChangeGui
-version: 1.2
+version: 2.0
 commands: 
   SCG:
     permission: SCG.use

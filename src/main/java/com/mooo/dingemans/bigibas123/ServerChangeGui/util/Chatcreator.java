@@ -24,7 +24,7 @@ public class Chatcreator {
         } else {
             realcolor = String.valueOf(ChatColor.COLOR_CHAR) + color.getChar();
         }
-        message = message + realcolor + msg;
+        message = message + " " + realcolor + msg;
     }
 
     public void newLine() {

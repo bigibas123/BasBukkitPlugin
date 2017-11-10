@@ -2,10 +2,12 @@ package com.mooo.dingemans.bigibas123.ServerChangeGui.config;
 
 
 import com.mooo.dingemans.bigibas123.ServerChangeGui.Reference.Reference;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Config {
     private static final JavaPlugin plugin = Reference.plugin;
@@ -18,8 +20,17 @@ public class Config {
         return plugin.getConfig();
     }
 
+    public static void reload() {
+        plugin.reloadConfig();
+    }
+
     public static String getItem(String server) {
-        return getConfig().getString("SCG.items." + server + ".item");
+        String itm = getConfig().getString("SCG.items." + server + ".item");
+        if (itm == null || Objects.equals(itm, "")) {
+            return Material.HARD_CLAY.name();
+        } else {
+            return itm;
+        }
     }
 
     public static short getDurability(String server) {
@@ -39,7 +50,13 @@ public class Config {
     }
 
     public static int getLocation(String server) {
-        return getConfig().getInt("SCG.items." + server + ".location");
+        int s;
+        if (getConfig().get("SCG.items." + server + ".location") == null) {
+            s = 1;
+        } else {
+            s = getConfig().getInt("SCG.items." + server + ".location");
+        }
+        return s;
     }
 
     public static void setLore(String server, List<String> lore) {
@@ -55,23 +72,24 @@ public class Config {
     }
 
     public static String getName(String server) {
-        return getConfig().getString("SCG.items." + server + ".customName");
+        String nm = getConfig().getString("SCG.items." + server + ".customName");
+        if (nm == null || Objects.equals(nm, "")) {
+            return server;
+        } else {
+            return nm;
+        }
     }
 
     public static String getMenuName() {
-        return getConfig().getString("SCG.general.menuName");
+        if (getConfig().getString("SCG.general.menuName") == null || getConfig().getString("SCG.general.menuName").equals("")) {
+            return "Server Chooser";
+        } else {
+            return getConfig().getString("SCG.general.menuName");
+        }
     }
 
     public static void setMenuName(String name) {
         getConfig().set("SCG.general.menuName", name);
     }
 
-    public static long getCallDelay() {
-        Long l = getConfig().getLong("SCG.general.messageCallDelayInTicks");
-        if (l == 0) {
-            l = 25L;
-            getConfig().set("SCG.general.messageCallDelayInTicks", l);
-        }
-        return l;
-    }
 }
