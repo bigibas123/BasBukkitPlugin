@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+  - jdk_switcher use oraclejdk8
+sudo: false
+cache:
+  directories:
+  - $HOME/.m2
