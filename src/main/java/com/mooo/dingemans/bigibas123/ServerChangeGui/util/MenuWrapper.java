@@ -23,8 +23,10 @@ public class MenuWrapper {
         //this.menu = new ServerMenu()
         int maxSlot = 0;
         for (Map.Entry<String, serverObj> s : Reference.server.entrySet()) {
-            if (maxSlot < s.getValue().getSlotNumber()) {
-                maxSlot = s.getValue().getSlotNumber();
+            if (s.getValue().isVisible()) {
+                if (maxSlot < s.getValue().getSlotNumber()) {
+                    maxSlot = s.getValue().getSlotNumber();
+                }
             }
         }
         int ms;
@@ -33,6 +35,7 @@ public class MenuWrapper {
         } else {
             ms = maxSlot + (9 - (maxSlot % 9));
         }
+        if (ms == 0) ms = 9;
         this.menu = new ServerMenu(p, ms / 9, Config.getMenuName(), Reference.server);
     }
 
@@ -48,13 +51,15 @@ public class MenuWrapper {
         @Override
         public void redraw() {
             for (serverObj s : sm.values()) {
-                HashMap<ClickType, Consumer<InventoryClickEvent>> handlers = new HashMap<>();
-                ICECons ch = new ICECons(s.getName());
-                for (ClickType t : ClickType.values()) {
-                    handlers.put(t, ch);
+                if (s.isVisible()) {
+                    HashMap<ClickType, Consumer<InventoryClickEvent>> handlers = new HashMap<>();
+                    ICECons ch = new ICECons(s.getName());
+                    for (ClickType t : ClickType.values()) {
+                        handlers.put(t, ch);
+                    }
+                    Item itm = new Item(handlers, s.getItem());
+                    this.setItem(s.getSlotNumber(), itm);
                 }
-                Item itm = new Item(handlers, s.getItem());
-                this.setItem(s.getSlotNumber(), itm);
             }
         }
 
