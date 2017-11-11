@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 
 import java.util.logging.Level;
 
-@SuppressWarnings({"UnusedDeclaration", "WeakerAccess"})
+@SuppressWarnings({"WeakerAccess"})
 public class LogHelper {
 
     private static void log(Level logLevel, Object msg) {

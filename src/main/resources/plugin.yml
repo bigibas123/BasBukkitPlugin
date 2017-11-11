@@ -1,9 +1,32 @@
 name: ServerChangeGui
-main: ServerChangeGui
+main: com.mooo.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
 version: 2.0
+author: bigibas123
+database: false
+prefix: SCG
 commands: 
   SCG:
     permission: SCG.use
     usage: /SCG
-    description: Main command of ServerChangeGui
-    permission-message: You don't have permission &bServerChangeGui.use on this server!
+    description: Opens the server change gui
+    permission-message: You don't have permission &bServerChangeGui.use
+    aliases: [scg, SCG, serverchangegui]
+    usage: /SCG [reload|save]
+
+permissions:
+  SCG.*:
+    description: Gives access to all serverchangegui commands
+    default: op
+    children:
+      SCG.use: true
+      SCG.reload: true
+      SCG.save: true
+  SCG.use:
+    description: Allows basic usage of the server change gui
+    default: true
+  SCG.reload:
+    description: Allows reloading from config
+    default: op
+  SCG.save:
+    description: Allows to save the current gui to file
+    default: op

@@ -13,6 +13,7 @@ public class Config {
     private static final JavaPlugin plugin = Reference.plugin;
 
     public static void save() {
+        getConfig().set("SCG.general.paragraphForCopy", "\u00A7");
         plugin.saveConfig();
     }
 
@@ -22,6 +23,7 @@ public class Config {
 
     public static void reload() {
         plugin.reloadConfig();
+
     }
 
     public static String getItem(String server) {
@@ -91,5 +93,6 @@ public class Config {
     public static void setMenuName(String name) {
         getConfig().set("SCG.general.menuName", name);
     }
+
 
 }
