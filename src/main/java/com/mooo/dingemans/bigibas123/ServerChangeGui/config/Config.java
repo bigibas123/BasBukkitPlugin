@@ -53,7 +53,7 @@ public class Config {
 
     public static int getLocation(String server) {
         int s;
-        if (getConfig().get("SCG.items." + server + ".location") == null) {
+        if (!getConfig().contains("SCG.items." + server + ".location")) {
             s = 1;
         } else {
             s = getConfig().getInt("SCG.items." + server + ".location");
@@ -80,6 +80,14 @@ public class Config {
         } else {
             return nm;
         }
+    }
+
+    public static void setVisibility(String server, boolean vis) {
+        getConfig().set("SCG.items." + server + ".visible", vis);
+    }
+
+    public static boolean getVisibility(String server) {
+        return !getConfig().contains("SCG.items." + server + ".visible") || getConfig().getBoolean("SCG.items." + server + ".visible");
     }
 
     public static String getMenuName() {

@@ -21,6 +21,8 @@ public class serverObj {
     private final List<String> lore;
     @Getter
     private int slotNumber;
+    @Getter
+    private boolean visible;
 
     public serverObj(String name) {
         this.name = name;
@@ -30,6 +32,7 @@ public class serverObj {
                 Config.getDurability(this.getName()));
         this.slotNumber = Config.getLocation(this.getName());
         this.lore = Config.getLore(this.getName());
+        this.visible = Config.getVisibility(this.getName());
         ItemMeta meta = this.getItem().getItemMeta();
         meta.setLore(this.getLore());
         meta.setDisplayName(this.getDisplayName());
@@ -43,5 +46,6 @@ public class serverObj {
         Config.setLocation(this.getName(), this.getSlotNumber());
         Config.setName(this.getName(), this.getDisplayName());
         Config.setLore(this.getName(), this.getLore());
+        Config.setVisibility(this.name, this.visible);
     }
 }
