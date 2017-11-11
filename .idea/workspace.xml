@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdf113fb-ec11-4bcd-bc71-db545e3f4004" name="Default" comment="added a visibility option to the config&#10;added case for empty server lists">
+    <list default="true" id="cdf113fb-ec11-4bcd-bc71-db545e3f4004" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/config/Config.java" afterPath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/config/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/MenuWrapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/MenuWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/serverObj.java" afterPath="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/serverObj.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="ServerChangeGui.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MenuWrapper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuWrapper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/MenuWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="534">
@@ -50,9 +48,19 @@
                 <element signature="method#setLore#0;class#Config#0" expanded="false" />
                 <element signature="method#getLore#0;class#Config#0" expanded="false" />
                 <element signature="method#setName#0;class#Config#0" expanded="false" />
-                <element signature="e#2578#2579#0" expanded="true" />
-                <element signature="e#2650#2651#0" expanded="true" />
                 <element signature="method#getMenuName#0;class#Config#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+              <folding>
+                <element signature="n#build#0;n#project#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -111,7 +119,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/Reference/Reference.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/wd/CopyStart.sh" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/wd/eula.txt" />
         <option value="$PROJECT_DIR$/wd/copy.sh" />
         <option value="$PROJECT_DIR$/wd/spigot.yml" />
@@ -126,6 +133,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/util/MenuWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/config/Config.java" />
         <option value="$PROJECT_DIR$/wd/plugins/ServerChangeGui/config.yml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -592,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1510406084378</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added a visibility option to the config&#10;added case for empty server lists">
+      <created>1510439891165</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1510439891165</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -608,7 +623,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.5081037" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277027" sideWeight="0.49189627" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32694477" sideWeight="0.49189627" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.493517" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -768,6 +783,7 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor>
             <js_state />
@@ -839,16 +855,6 @@
         <state relative-caret-position="136">
           <caret line="12" column="44" lean-forward="false" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="91" column="36" lean-forward="false" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
-          <folding>
-            <element signature="n#build#0;n#project#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,23 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/config/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
-          <folding>
-            <element signature="method#getItem#0;class#Config#0" expanded="false" />
-            <element signature="method#setDurability#0;class#Config#0" expanded="false" />
-            <element signature="method#setLore#0;class#Config#0" expanded="false" />
-            <element signature="method#getLore#0;class#Config#0" expanded="false" />
-            <element signature="method#setName#0;class#Config#0" expanded="false" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="e#2650#2651#0" expanded="true" />
-            <element signature="method#getMenuName#0;class#Config#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wd/plugins/ServerChangeGui/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1032,6 +1021,31 @@
           <folding>
             <element signature="e#2303#2304#0" expanded="true" />
             <element signature="e#2357#2358#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mooo/dingemans/bigibas123/ServerChangeGui/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+          <folding>
+            <element signature="method#getItem#0;class#Config#0" expanded="false" />
+            <element signature="method#setDurability#0;class#Config#0" expanded="false" />
+            <element signature="method#setLore#0;class#Config#0" expanded="false" />
+            <element signature="method#getLore#0;class#Config#0" expanded="false" />
+            <element signature="method#setName#0;class#Config#0" expanded="false" />
+            <element signature="method#getMenuName#0;class#Config#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding>
+            <element signature="n#build#0;n#project#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
