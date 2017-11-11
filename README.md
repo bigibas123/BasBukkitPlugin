@@ -1,7 +1,7 @@
 # ServerChangeGui
 A plugin utilising the bungee-API to create an inventory server list
 
-![Build Status](http://ci.dingemans.mooo.com:8080/buildStatus/icon?job=ServerChangeGui&style=plastic)
+[![Build Status](https://travis-ci.org/bigibas123/ServerChangeGui.svg?branch=master)](https://travis-ci.org/bigibas123/ServerChangeGui)
 
  [Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
 
@@ -21,21 +21,25 @@ help/merge requests greatly appreciated
 SCG:
   items:
     lobby:
-      item: STAINED_CLAY
-      durability: 6
-      location: 0
-      lore:
-      - Connects you to the lobby server
-      customName: To hub
-    skywars:
       item: GRASS
       durability: 0
-      location: 1
+      location: 0
+      customName: §bLobby Server Pls
       lore:
-      - Connects you to the skywars server
-      customName: Skywars
+      - the fishes stay at sea
+      visible: true
+    skywars:
+      item: IRON_SWORD
+      durability: 11
+      location: 1
+      customName: §bskywars
+      lore:
+      - brings you to the skywars server
+      - kill everybody!
+      visible: true
   general:
-    menuName: Servers
+    menuName: SpaceMarine
+    paragraphForCopy: §
 
 ```
 
@@ -43,4 +47,4 @@ for the item names see https://gist.githubusercontent.com/bigibas123/aea44ec5eea
 
 
 ##Credits
-nisovin:[Icon Menu class](http://bukkit.org/threads/icon-menu.108342/) [Bukkit Profile](http://bukkit.org/members/nisovin.2980/)
+luko: [helper](https://github.com/lucko/helper)
