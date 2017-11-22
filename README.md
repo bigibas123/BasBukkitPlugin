@@ -13,7 +13,9 @@ help/merge requests greatly appreciated
 
 ##Commands:
 
-  `/SCG` opens the interface, permission: SCG.use
+  `/scg` opens the interface, permission: SCG.use
+  `/scg reload` reloads the menu from the config, permission SCG.reload
+  `/scg save` saves the current menu to config (handy if you don't want to type it all out), permission: SCG.save
 
 
 ##Example config
@@ -27,7 +29,6 @@ SCG:
       customName: §bLobby Server Pls
       lore:
       - the fishes stay at sea
-      visible: true
     skywars:
       item: IRON_SWORD
       durability: 11
@@ -36,10 +37,10 @@ SCG:
       lore:
       - brings you to the skywars server
       - kill everybody!
-      visible: true
   general:
     menuName: SpaceMarine
     paragraphForCopy: §
+
 
 ```
 
