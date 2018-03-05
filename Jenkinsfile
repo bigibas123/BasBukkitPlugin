@@ -13,7 +13,7 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+        sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
       }
     }
     stage('Archive') {
