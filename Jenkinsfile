@@ -13,6 +13,7 @@ pipeline {
     stage('Build') {
       agent any
       steps {
+        checkout scm
         sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
       }
     }
