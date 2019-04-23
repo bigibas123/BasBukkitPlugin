@@ -1,13 +1,12 @@
 name: ServerChangeGui
-main: com.mooo.dingemans.bigibas123.ServerChangeGui.ServerChangeGui
-version: 2.0
+main: com.github.bigibas123.ServerChangeGui.ServerChangeGui
+version: ${project.version}
 author: bigibas123
 database: false
 prefix: SCG
 commands: 
   SCG:
     permission: SCG.use
-    usage: /SCG
     description: Opens the server change gui
     permission-message: You don't have permission &bServerChangeGui.use
     aliases: [scg, SCG, serverchangegui]
@@ -19,10 +18,14 @@ permissions:
     default: op
     children:
       SCG.use: true
+      SCG.use.*: true
       SCG.reload: true
       SCG.save: true
   SCG.use:
     description: Allows basic usage of the server change gui
+    default: true
+  SCG.use.*:
+    description: Allows te player to view all servers and use them
     default: true
   SCG.reload:
     description: Allows reloading from config
