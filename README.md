@@ -13,9 +13,12 @@ help/merge requests greatly appreciated
 
 ##Commands:
 
-  `/scg` opens the interface, permission: SCG.use
-  `/scg reload` reloads the menu from the config, permission SCG.reload
-  `/scg save` saves the current menu to config (handy if you don't want to type it all out), permission: SCG.save
+  `/scg` opens the interface
+  
+  `/scg reload` reloads the menu from the config
+  
+  `/scg save` saves the current menu to config (handy if you don't want to type it all out)
+  
   `/scg setitem <server>` changes the server item to the currently held one
 
 
