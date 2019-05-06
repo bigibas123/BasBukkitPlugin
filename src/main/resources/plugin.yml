@@ -4,6 +4,8 @@ version: ${project.version}
 author: bigibas123
 database: false
 prefix: SCG
+softdepend:
+  - helper
 commands: 
   SCG:
     permission: SCG.use

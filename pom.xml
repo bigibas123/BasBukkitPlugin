@@ -38,10 +38,10 @@
                 <version>3.2.1</version>
                 <configuration>
                     <relocations>
-                        <relocation>
+                        <!--<relocation>
                             <pattern>me.lucko.helper</pattern>
                             <shadedPattern>com.github.bigibas123.helper</shadedPattern>
-                        </relocation>
+                        </relocation>-->
                     </relocations>
                 </configuration>
                 <executions>
@@ -109,7 +109,7 @@
             <groupId>me.lucko</groupId>
             <artifactId>helper</artifactId>
             <version>5.5.0</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

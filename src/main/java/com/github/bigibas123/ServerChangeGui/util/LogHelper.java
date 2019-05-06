@@ -42,7 +42,7 @@ public class LogHelper {
         log(Level.WARNING, object);
     }
 
-    public static void SERVE(Object object) {
+    public static void SEVERE(Object object) {
         log(Level.SEVERE, object);
     }
 
