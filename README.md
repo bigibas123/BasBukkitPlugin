@@ -11,7 +11,7 @@ feel free to contact me about anything
 help/merge requests greatly appreciated
 
 
-##Commands:
+## Commands
 
   `/scg` opens the interface
   
@@ -22,5 +22,7 @@ help/merge requests greatly appreciated
   `/scg setitem <server>` changes the server item to the currently held one
 
 
-##Credits
+
+## Credits
+
 luko: [helper](https://github.com/lucko/helper)
