@@ -35,7 +35,7 @@ public class ChatHelper {
     }
 
     public ChatHelper newLine(level l) {
-        msg.append("\r\n");
+        msg.append("\n");
         msg.append(l);
         prefix();
         return this;
