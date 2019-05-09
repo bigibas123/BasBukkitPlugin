@@ -3,6 +3,7 @@ package com.github.bigibas123.ServerChangeGui;
 import com.github.bigibas123.ServerChangeGui.Reference.Reference;
 import com.github.bigibas123.ServerChangeGui.util.ChatHelper;
 import com.github.bigibas123.ServerChangeGui.util.LogHelper;
+import com.github.bigibas123.ServerChangeGui.util.PermissionUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.lucko.helper.Schedulers;
@@ -108,6 +109,10 @@ public class Menu {
         }
     }
 
+    public void reload() {
+        this.update(Reference.getConfig().getServerList());
+    }
+
     private class ServerMenu extends Gui {
 
         private final HashMap<String, ServerItem> items;
@@ -116,7 +121,7 @@ public class Menu {
             super(player, lines, title);
             HashMap<String, ServerItem> allowedItems = new HashMap<>();
             for (Map.Entry<String, ServerItem> item : items.entrySet()) {
-                if (player.hasPermission("SCG.use." + item.getValue().getServerName())) {
+                if (PermissionUtils.hasPermission(player, "SCG.use." + item.getValue().getServerName())) {
                     allowedItems.put(item.getKey(), item.getValue());
                 }
             }

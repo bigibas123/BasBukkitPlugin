@@ -23,6 +23,10 @@ permissions:
       SCG.use.*: true
       SCG.reload: true
       SCG.save: true
+      SCG.setitem: true
+      SCG.setitem.*: true
+      SCG.setslot: true
+      SCG.setslot.*: true
   SCG.use:
     description: Allows basic usage of the server change gui
     default: true
