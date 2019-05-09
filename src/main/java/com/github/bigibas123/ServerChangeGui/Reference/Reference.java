@@ -6,7 +6,6 @@ import com.github.bigibas123.ServerChangeGui.ServerChangeGui;
 import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
 import lombok.Getter;
 
-
 public class Reference {
     @Getter
     public static String name;
@@ -16,5 +15,6 @@ public class Reference {
     public static BungeeCord bungee;
     @Getter
     public static Config config;
+    @Getter
     public static Menu menu;
 }
