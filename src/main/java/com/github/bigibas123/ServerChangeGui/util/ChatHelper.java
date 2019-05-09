@@ -5,6 +5,8 @@ import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
+import static com.github.bigibas123.ServerChangeGui.util.ChatHelper.level.*;
+
 public class ChatHelper {
 
     private final CommandSender player;
@@ -17,6 +19,11 @@ public class ChatHelper {
         prefix();
     }
 
+    public static void quickNoPermission(CommandSender player, String permission) {
+        new ChatHelper(player, SEVERE).append("You dont have permission:").append(HIGHLIGHT, permission).newLine(PS)
+                .append(PS, "if you think this is in error please contact one of your server admins").send();
+    }
+
     public ChatHelper append(String string) {
         msg.append(string);
         return this;
@@ -24,12 +31,6 @@ public class ChatHelper {
 
     public ChatHelper append(level l, String str) {
         msg.append(quickAppend(l.toString(), str));
-        return this;
-    }
-
-    public ChatHelper newLine() {
-        msg.append("\n");
-        prefix();
         return this;
     }
 
@@ -63,6 +64,7 @@ public class ChatHelper {
         WARN(ChatColor.YELLOW),
         DEFAULT(ChatColor.DARK_GREEN),
         GOOD(ChatColor.GREEN),
+        HIGHLIGHT(ChatColor.AQUA),
         BAD(ChatColor.DARK_RED),
         PS(ChatColor.DARK_GRAY);
 
