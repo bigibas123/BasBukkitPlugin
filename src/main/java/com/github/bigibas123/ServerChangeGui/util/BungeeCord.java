@@ -5,8 +5,10 @@ import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import me.lucko.helper.Events;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
@@ -31,7 +33,15 @@ public class BungeeCord implements PluginMessageListener {
     }
 
     private void sendPluginMessage(String subChannel, String... args) {
-        this.sendPluginMessage(subChannel, Iterables.getFirst(Bukkit.getOnlinePlayers(), null), args);
+        PluginMessageRecipient recipient = Iterables.getFirst(Bukkit.getOnlinePlayers(), null);
+        if (recipient == null) {
+            LogHelper.INFO("Scheduled plugin msg:" + subChannel + " for a later time");
+            Events.subscribe(PlayerLoginEvent.class).expireAfter(1).handler(e -> {
+                this.sendPluginMessage(subChannel, e.getPlayer(), args);
+            }).bindWith(plugin);
+        } else {
+            this.sendPluginMessage(subChannel, recipient, args);
+        }
     }
 
     private void sendPluginMessage(String subChannel, PluginMessageRecipient recipient, String... args) {
@@ -41,6 +51,7 @@ public class BungeeCord implements PluginMessageListener {
             out.writeUTF(arg);
         }
         recipient.sendPluginMessage(plugin, channel, out.toByteArray());
+        LogHelper.INFO("Sent: Channel:" + channel + " Subchannel:" + subChannel + " Content:" + Arrays.toString(out.toByteArray()));
     }
 
 
@@ -65,7 +76,11 @@ public class BungeeCord implements PluginMessageListener {
         String sub = "GetServers";
         CompletableFuture<ByteArrayDataInput> fut = new CompletableFuture<>();
 
-        CompletableFuture<List<String>> returnedFuture = fut.thenApplyAsync(in -> Arrays.asList(in.readUTF().split(", ")));
+        CompletableFuture<List<String>> returnedFuture = fut.thenApplyAsync(in -> {
+            List<String> list = Arrays.asList(in.readUTF().split(", "));
+            LogHelper.INFO("Received server list:" + Arrays.toString(list.toArray()));
+            return list;
+        });
 
         if (!waits.containsKey(sub)) waits.put(sub, new ArrayList<>());
 
