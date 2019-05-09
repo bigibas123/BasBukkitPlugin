@@ -35,3 +35,14 @@ permissions:
   SCG.save:
     description: Allows to save the current gui to file
     default: op
+  SCG.setitem:
+    description: Allows to set a certain item for a server (still needs SCG.setitem.<server> to actually do it)
+    default: op
+  SCG.setitem.*:
+    description: Allow to set the item of a specific server
+    default: op
+  SCG.setslot:
+    description: Allows to set a certain slot for a server (still needs SCG.setslot.<server> to actually do it)
+    default: op
+  SCG.setslot.*:
+    description: Allow to set the slot of a specific server

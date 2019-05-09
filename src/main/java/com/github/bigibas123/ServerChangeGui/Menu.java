@@ -26,16 +26,24 @@ public class Menu {
         this.update(Reference.getConfig().getServerList());
     }
 
-    public void setItem(String server, ItemStack stack) {
+    public boolean setItem(String server, ItemStack stack) {
         ServerItem si = this.items.get(server);
+        if (si == null) return false;
         ServerItem nsi = new ServerItem(si.getServerName(), si.getSlot(), stack);
         this.items.put(server, nsi);
+        return true;
     }
 
-    public void setSlot(String server, Integer slot) {
+    public boolean setSlot(String server, Integer slot) {
         ServerItem si = this.items.get(server);
+        if (si == null) return false;
         ServerItem nsi = new ServerItem(si.getServerName(), slot, si.getStack());
         this.items.put(server, nsi);
+        return true;
+    }
+
+    public List<String> getServers() {
+        return new ArrayList<>(this.items.keySet());
     }
 
     public void requestUpdate() {
@@ -106,7 +114,13 @@ public class Menu {
 
         public ServerMenu(Player player, int lines, String title, HashMap<String, ServerItem> items) {
             super(player, lines, title);
-            this.items = items;
+            HashMap<String, ServerItem> allowedItems = new HashMap<>();
+            for (Map.Entry<String, ServerItem> item : items.entrySet()) {
+                if (player.hasPermission("SCG.use." + item.getValue().getServerName())) {
+                    allowedItems.put(item.getKey(), item.getValue());
+                }
+            }
+            this.items = allowedItems;
         }
 
         @Override
