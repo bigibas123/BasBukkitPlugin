@@ -22,6 +22,7 @@ public class ServerChangeGui extends ExtendedJavaPlugin {
     @Override
     public void enable() {
         this.registerCommand(new SCGCommand(), ((List<String>) this.getDescription().getCommands().get("SCG").get("aliases")).toArray(new String[0]));
+        Reference.menu.requestUpdate();
     }
 
     @Override
