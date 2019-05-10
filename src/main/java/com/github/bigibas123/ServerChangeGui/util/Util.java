@@ -1,8 +1,15 @@
 package com.github.bigibas123.ServerChangeGui.util;
 
+import org.bukkit.ChatColor;
 import org.bukkit.permissions.Permissible;
 
-public class PermissionUtils {
+public class Util {
+    public static String replaceColorCodes(String string) {
+        return ChatColor.RESET.toString() +
+                string.replaceAll("(?<!\\\\)&", String.valueOf(ChatColor.COLOR_CHAR))
+                        .replaceAll("\\\\&", "&");
+    }
+
     public static boolean hasPermission(Permissible player, String permission) {
         if (player.hasPermission(permission)) return true;
         StringBuilder permPart = new StringBuilder();
