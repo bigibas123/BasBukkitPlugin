@@ -1,24 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Initialize') {
-      agent any
-      steps {
-        sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-      }
-    }
     stage('Build') {
       agent any
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true clean package'
-      }
-    }
-    stage('Archive') {
-      agent any
-      steps {
+        sh '''
+                            echo "PATH = ${PATH}"
+                            echo "M2_HOME = ${M2_HOME}"
+                        '''
+        checkout scm
+        sh 'mvn -Dmaven.test.failure.ignore=true -Pupstream clean package'
         archiveArtifacts 'target/*.jar'
       }
     }
