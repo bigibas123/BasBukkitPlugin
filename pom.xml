@@ -4,7 +4,7 @@
 
     <groupId>com.github.bigibas123</groupId>
     <artifactId>ServerChangeGui</artifactId>
-    <version>3.0</version>
+    <version>3.1-SNAPSHOT</version>
 
     <build>
         <plugins>
@@ -137,7 +137,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/bigibas123/ServerChangeGui.git</developerConnection>
-      <tag>ServerChangeGui-3.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
