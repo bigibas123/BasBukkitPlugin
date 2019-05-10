@@ -43,7 +43,7 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
                 success = true;
             } else {
                 new ChatHelper(sender, SEVERE).append("This command requires arguments or to be run as a player").newLine(PS)
-                        .append("You are:").append(sender.getClass().getSimpleName()).send();
+                        .append("You are: ").append(HIGHLIGHT, sender.getClass().getSimpleName()).send();
                 success = false;
             }
         }
@@ -126,19 +126,28 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
         if (Util.hasPermission(sender, "SCG.setslot")) {
             if (args.length > 2) {
                 if (Util.hasPermission(sender, "SCG.setslot." + args[1])) {
-                    success = Reference.getMenu().setSlot(args[1], Integer.valueOf(args[2]));
-                    if (success) {
-                        new ChatHelper(sender, GOOD).append("Set slot of:").append(HIGHLIGHT, args[1])
-                                .append(GOOD, " to ").append(HIGHLIGHT, Integer.valueOf(args[2]).toString()).send();
+                    int slot = Integer.parseInt(args[2]);
+                    if (Reference.getMenu().isSlotFree(slot - 1)) {
+                        success = Reference.getMenu().setSlot(args[1], slot - 1);
+                        if (success) {
+                            new ChatHelper(sender, GOOD).append("Set slot of: ").append(HIGHLIGHT, args[1])
+                                    .append(GOOD, " to ").append(HIGHLIGHT, Integer.valueOf(slot).toString()).send();
+                        } else {
+                            new ChatHelper(sender, BAD).append("Server: ").append(HIGHLIGHT, args[1]).append(BAD, " not found").newLine(PS)
+                                    .append("Please use one of: ").append(Arrays.toString(Reference.menu.getServers().toArray())).send();
+                        }
                     } else {
-                        new ChatHelper(sender, BAD).append("Server: ").append(HIGHLIGHT, args[1]).append(BAD, " not found").newLine(PS)
-                                .append("Please use one of: ").append(Arrays.toString(Reference.menu.getServers().toArray())).send();
+                        new ChatHelper(sender, BAD).append("Slot: ").append(HIGHLIGHT, Integer.toString(slot)).append(BAD, " already taken").newLine(PS)
+                                .append("Please choose one that is not: ").append(Arrays.toString(Reference.getMenu().getTakenSlots().toArray()));
+                        success = true;
                     }
                 } else {
                     ChatHelper.quickNoPermission(sender, "SCG.setslot." + args[1]);
                     success = true;
                 }
             } else {
+                new ChatHelper(sender, BAD).append("Not enough arguments").newLine(PS)
+                        .append("/scg setslot <server> <slot>").send();
                 success = false;
             }
         } else {

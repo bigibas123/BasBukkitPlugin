@@ -1,7 +1,7 @@
-name: ServerChangeGui
+name: ${project.artifactId}
 main: com.github.bigibas123.ServerChangeGui.ServerChangeGui
 version: ${project.version}
-author: bigibas123
+authors: ['bigibas123']
 database: false
 prefix: SCG
 softdepend:
@@ -10,9 +10,9 @@ commands:
   SCG:
     permission: SCG.use
     description: Opens the server change gui
-    permission-message: You don't have permission &bServerChangeGui.use
+    permission-message: You don't have the permission &bSCG.use
     aliases: [scg, SCG, serverchangegui]
-    usage: /SCG [reload|save]
+    usage: /SCG [reload|save|setItem|setSlot] [server] [slot]
 
 permissions:
   SCG.*:

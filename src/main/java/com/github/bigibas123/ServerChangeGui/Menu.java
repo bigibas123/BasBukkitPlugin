@@ -35,16 +35,31 @@ public class Menu {
         return true;
     }
 
+    public boolean isSlotFree(int slot) {
+        return !takenSlots.contains(slot);
+    }
+
     public boolean setSlot(String server, Integer slot) {
         ServerItem si = this.items.get(server);
         if (si == null) return false;
-        ServerItem nsi = new ServerItem(si.getServerName(), slot, si.getStack());
-        this.items.put(server, nsi);
-        return true;
+        if (!takenSlots.contains(slot)) {
+            ServerItem nsi = new ServerItem(si.getServerName(), slot, si.getStack());
+            this.items.put(server, nsi);
+            this.takenSlots.add(slot);
+            return true;
+        } else {
+
+            return false;
+        }
     }
 
     public List<String> getServers() {
         return new ArrayList<>(this.items.keySet());
+    }
+
+
+    public ArrayList<Integer> getTakenSlots() {
+        return new ArrayList<>(takenSlots);
     }
 
     public void requestUpdate() {
