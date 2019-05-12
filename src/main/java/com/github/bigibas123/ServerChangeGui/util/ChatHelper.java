@@ -1,6 +1,5 @@
 package com.github.bigibas123.ServerChangeGui.util;
 
-import com.github.bigibas123.ServerChangeGui.Reference.Reference;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -42,7 +41,7 @@ public class ChatHelper {
     }
 
     private void prefix() {
-        msg.append(quickAppend("[", Reference.getPlugin().getDescription().getPrefix(), "] "));
+        msg.append(quickAppend("[", "SCG" , "] "));
     }
 
     private String quickAppend(String... args) {

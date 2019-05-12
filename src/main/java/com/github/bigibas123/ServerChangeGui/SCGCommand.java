@@ -1,6 +1,5 @@
 package com.github.bigibas123.ServerChangeGui;
 
-import com.github.bigibas123.ServerChangeGui.Reference.Reference;
 import com.github.bigibas123.ServerChangeGui.util.ChatHelper;
 import com.github.bigibas123.ServerChangeGui.util.Util;
 import me.lucko.helper.item.ItemStackBuilder;
@@ -19,6 +18,12 @@ import java.util.List;
 import static com.github.bigibas123.ServerChangeGui.util.ChatHelper.level.*;
 
 public class SCGCommand implements CommandExecutor, TabCompleter {
+
+    private final ServerChangeGui plugin;
+
+    public SCGCommand(ServerChangeGui plugin) {
+        this.plugin = plugin;
+    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -39,7 +44,7 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             }
         } else {
             if (sender instanceof Player) {
-                Reference.menu.open((Player) sender);
+                plugin.getMenu().open((Player) sender);
                 success = true;
             } else {
                 new ChatHelper(sender, SEVERE).append("This command requires arguments or to be run as a player").newLine(PS)
@@ -53,8 +58,8 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
     private boolean reload(CommandSender sender) {
         boolean success;
         if (Util.hasPermission(sender, "SCG.reload")) {
-            Reference.config.reload();
-            Reference.menu.reload();
+            plugin.getMenu().reload();
+            plugin.getMenu().reload();
         } else {
             ChatHelper.quickNoPermission(sender, "SCG.reload");
         }
@@ -65,8 +70,8 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
     private boolean save(CommandSender sender) {
         boolean success;
         if (Util.hasPermission(sender, "SCG.save")) {
-            Reference.menu.save();
-            Reference.config.save();
+            plugin.getMenu().save();
+            plugin.getConfigHelper().save();
         } else {
             ChatHelper.quickNoPermission(sender, "SCG.save");
         }
@@ -91,14 +96,14 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
                                         itemMeta.setLore(lore);
                                     }
                                 }).build();
-                        success = Reference.menu.setItem(args[1], stack);
+                        success = plugin.getMenu().setItem(args[1], stack);
                         if (success) {
                             new ChatHelper(sender, GOOD)
                                     .append("Server item of: ").append(HIGHLIGHT, args[1])
                                     .append(GOOD, " set to: ").append(HIGHLIGHT, stack.getType().name()).send();
                         } else {
                             new ChatHelper(sender, BAD).append("Server: ").append(HIGHLIGHT, args[1]).append(BAD, " not found").newLine(PS)
-                                    .append("Please use one of: ").append(Arrays.toString(Reference.menu.getServers().toArray())).send();
+                                    .append("Please use one of: ").append(Arrays.toString(plugin.getMenu().getServers().toArray())).send();
                         }
                     } else {
                         ChatHelper.quickNoPermission(sender, "SCG.setitem." + args[1]);
@@ -127,18 +132,18 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             if (args.length > 2) {
                 if (Util.hasPermission(sender, "SCG.setslot." + args[1])) {
                     int slot = Integer.parseInt(args[2]);
-                    if (Reference.getMenu().isSlotFree(slot - 1)) {
-                        success = Reference.getMenu().setSlot(args[1], slot - 1);
+                    if (plugin.getMenu().isSlotFree(slot - 1)) {
+                        success = plugin.getMenu().setSlot(args[1], slot - 1);
                         if (success) {
                             new ChatHelper(sender, GOOD).append("Set slot of: ").append(HIGHLIGHT, args[1])
                                     .append(GOOD, " to ").append(HIGHLIGHT, Integer.valueOf(slot).toString()).send();
                         } else {
                             new ChatHelper(sender, BAD).append("Server: ").append(HIGHLIGHT, args[1]).append(BAD, " not found").newLine(PS)
-                                    .append("Please use one of: ").append(Arrays.toString(Reference.menu.getServers().toArray())).send();
+                                    .append("Please use one of: ").append(Arrays.toString(plugin.getMenu().getServers().toArray())).send();
                         }
                     } else {
                         new ChatHelper(sender, BAD).append("Slot: ").append(HIGHLIGHT, Integer.toString(slot)).append(BAD, " already taken").newLine(PS)
-                                .append("Please choose one that is not: ").append(Arrays.toString(Reference.getMenu().getTakenSlots().toArray()));
+                                .append("Please choose one that is not: ").append(Arrays.toString(plugin.getMenu().getTakenSlots().toArray()));
                         success = true;
                     }
                 } else {
@@ -175,7 +180,7 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             }
         } else if (args.length == 2) {
             if (("setItem".equalsIgnoreCase(args[0]) && Util.hasPermission(sender, "SCG.setitem")) || ("setslot".equalsIgnoreCase(args[0]) && Util.hasPermission(sender, "SCG.setslot"))) {
-                for (String server : Reference.menu.getServers()) {
+                for (String server : plugin.getMenu().getServers()) {
                     if (server.startsWith(args[1])) {
                         suggestions.add(server);
                     }

@@ -1,32 +1,45 @@
 package com.github.bigibas123.ServerChangeGui;
 
-import com.github.bigibas123.ServerChangeGui.Reference.Reference;
-import me.lucko.helper.item.ItemStackBuilder;
+import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 public class Config {
 
-    private static String getPrefix() {
-        return Reference.plugin.getDescription().getPrefix();
+    @Getter
+    private final ServerChangeGui plugin;
+
+    public Config(ServerChangeGui plugin) {
+
+        this.plugin = plugin;
+    }
+
+    private String getPrefix() {
+        String prefix = this.getPlugin().getDescription().getPrefix();
+        if(prefix == null) {
+            return "SCG";
+        }else {
+            return prefix;
+        }
     }
 
     private FileConfiguration getConfig() {
-        return Reference.plugin.getConfig();
+        return this.getPlugin().getConfig();
     }
 
     public void save() {
-        Reference.plugin.saveConfig();
+        this.getPlugin().saveConfig();
     }
 
     public void reload() {
-        Reference.plugin.reloadConfig();
+        this.getPlugin().reloadConfig();
     }
 
     public ItemStack getServerItem(String name) {
@@ -35,8 +48,12 @@ public class Config {
             return serverSect.getItemStack("item");
         } else {
             Material[] mats = Material.values();
-            ItemStackBuilder rng = ItemStackBuilder.of(mats[new Random().nextInt(mats.length)]).transformMeta(m -> m.setDisplayName(name));
-            return rng.build();
+            ItemStack rngStack = new ItemStack(mats[new Random().nextInt(mats.length)]);
+            @Nullable ItemMeta meta = rngStack.getItemMeta();
+            assert meta != null;
+            meta.setDisplayName(name);
+            rngStack.setItemMeta(meta);
+            return rngStack;
         }
     }
 
@@ -54,12 +71,8 @@ public class Config {
     }
 
     public Set<String> getServerList() {
-        Set<String> servers = getSection("server").getKeys(false);
 
-        if (servers == null) {
-            servers = new HashSet<>();
-        }
-        return servers;
+        return getSection("server").getKeys(false);
     }
 
     public int getMenuWidth() {
@@ -86,6 +99,7 @@ public class Config {
         return sect;
     }
 
+    @SuppressWarnings("unused")
     private ConfigurationSection getSection(ConfigurationSection parent, String... names) {
         ConfigurationSection sect = parent.getConfigurationSection(quickDot(names));
         if (sect == null) {

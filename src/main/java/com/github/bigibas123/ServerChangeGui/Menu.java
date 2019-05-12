@@ -1,6 +1,6 @@
 package com.github.bigibas123.ServerChangeGui;
 
-import com.github.bigibas123.ServerChangeGui.Reference.Reference;
+import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
 import com.github.bigibas123.ServerChangeGui.util.ChatHelper;
 import com.github.bigibas123.ServerChangeGui.util.LogHelper;
 import com.github.bigibas123.ServerChangeGui.util.Util;
@@ -22,9 +22,15 @@ public class Menu {
     private int lines;
     private ArrayList<Integer> takenSlots;
     private HashMap<String, ServerItem> items;
+    private Config config;
+    private BungeeCord bungee;
+    private LogHelper log;
 
-    public Menu() {
-        this.update(Reference.getConfig().getServerList());
+    public Menu(Config config, BungeeCord bungee, LogHelper log) {
+        this.config = config;
+        this.bungee = bungee;
+        this.log = log;
+        this.update(config.getServerList());
     }
 
     public boolean setItem(String server, ItemStack stack) {
@@ -63,30 +69,30 @@ public class Menu {
     }
 
     public void requestUpdate() {
-        Reference.getBungee().getServers().thenAccept(this::update);
+        this.bungee.getServers().thenAccept(this::update);
     }
 
     public void update(Collection<String> servers) {
-        title = Reference.getConfig().getMenuTitle();
-        width = Reference.getConfig().getMenuWidth();
+        title = config.getMenuTitle();
+        width = config.getMenuWidth();
         this.takenSlots = new ArrayList<>();
         this.items = new HashMap<>();
         int max = -1;
         for (String server : servers) {
-            Integer slot = Reference.getConfig().getServerSlot(server);
+            Integer slot = config.getServerSlot(server);
             if (takenSlots.contains(slot)) {
 
                 int oldSlot = slot;
                 slot = this.getNextOpenSlot(slot);
-                LogHelper.INFO(String.format("Slot %1s taken setting to slot:%3s", oldSlot, slot));
+                log.INFO(String.format("Slot %1s taken setting to slot:%3s", oldSlot, slot));
             }
-            ItemStack item = Reference.getConfig().getServerItem(server);
+            ItemStack item = config.getServerItem(server);
             this.items.put(server, new ServerItem(server, slot, item));
             this.takenSlots.add(slot);
             max = Math.max(max, slot + 1);
         }
         this.lines = Gui.getMenuSize(max, width);
-        LogHelper.FINE("width:" + width + " lines:" + lines + " taken slots:" + Arrays.toString(takenSlots.toArray()));
+        log.FINE("width:" + width + " lines:" + lines + " taken slots:" + Arrays.toString(takenSlots.toArray()));
     }
 
     private Integer getNextOpenSlot(Integer slot) {
@@ -103,7 +109,7 @@ public class Menu {
     }
 
     public void save() {
-        Config cfg = Reference.getConfig();
+        Config cfg = config;
         cfg.setMenuTitle(this.title);
         cfg.setMenuWidth(this.width);
         for (ServerItem item : this.items.values()) {
@@ -125,7 +131,7 @@ public class Menu {
     }
 
     public void reload() {
-        this.update(Reference.getConfig().getServerList());
+        this.update(config.getServerList());
     }
 
     private class ServerMenu extends Gui {
@@ -151,7 +157,7 @@ public class Menu {
                     slot.applyFromItem(Item.builder(entry.getValue().getStack())
                             .bind(inventoryClickEvent -> {
                                 if (inventoryClickEvent.getWhoClicked() instanceof Player) {
-                                    Reference.getBungee().connect((Player) inventoryClickEvent.getWhoClicked(), entry.getValue().getServerName());
+                                    bungee.connect((Player) inventoryClickEvent.getWhoClicked(), entry.getValue().getServerName());
                                 }
                             }, ClickType.LEFT, ClickType.RIGHT, ClickType.MIDDLE)
                             .build());
