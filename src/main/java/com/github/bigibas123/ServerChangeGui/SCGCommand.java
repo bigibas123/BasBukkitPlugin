@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -85,16 +86,20 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             if (sender instanceof Player) {
                 if (args.length > 1) {
                     if (Util.hasPermission(sender, "SCG.setitem." + args[1])) {
-                        ItemStack stack = ItemStackBuilder.of(((Player) sender).getInventory().getItemInMainHand().clone())
+                        @NotNull ItemStack original = ((Player) sender).getInventory().getItemInMainHand().clone();
+                        ItemStack stack = ItemStackBuilder.of(original)
                                 .transformMeta(itemMeta -> {
-                                    String name = itemMeta.getDisplayName();
-                                    name = Util.replaceColorCodes(name);
-                                    itemMeta.setDisplayName(name);
+                                    if(itemMeta.hasDisplayName()){
+                                        String name = itemMeta.getDisplayName();
+                                        name = Util.replaceColorCodes(name);
+                                        itemMeta.setDisplayName(name);
+                                    }
                                     List<String> lore = itemMeta.getLore();
                                     if (lore != null) {
                                         lore.replaceAll(Util::replaceColorCodes);
                                         itemMeta.setLore(lore);
                                     }
+                                    itemMeta.addItemFlags(original.getItemMeta() != null ? original.getItemMeta().getItemFlags().toArray(new ItemFlag[0]) : new ItemFlag[0]);
                                 }).build();
                         success = plugin.getMenu().setItem(args[1], stack);
                         if (success) {

@@ -10,11 +10,15 @@ import me.lucko.helper.Schedulers;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.Item;
 import me.lucko.helper.menu.Slot;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.messaging.PluginMessageRecipient;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
 
 public class Menu {
     private String title;
@@ -121,7 +125,7 @@ public class Menu {
 
     public void open(Player player) {
         if (this.items != null && this.items.size() > 0) {
-            ServerMenu menu = new ServerMenu(player, this.lines, this.title, this.items);
+            ServerMenu menu = new ServerMenu(player, this.width, this.title, this.items, (ent, serverName) -> bungee.connect((PluginMessageRecipient) ent,serverName));
             Schedulers.sync().run(menu::open);
         } else {
             new ChatHelper(player, ChatHelper.level.WARN).append("Menu not fetched").newLine(ChatHelper.level.DEFAULT)
@@ -134,12 +138,23 @@ public class Menu {
         this.update(config.getServerList());
     }
 
-    private class ServerMenu extends Gui {
+    private static class ServerMenu extends Gui {
 
         private final HashMap<String, ServerItem> items;
+        private final BiConsumer<HumanEntity, String> clickCallback;
 
-        public ServerMenu(Player player, int lines, String title, HashMap<String, ServerItem> items) {
-            super(player, lines, title);
+        private static int getLineCount(Collection<ServerItem> items, int width){
+            int max = -1;
+            for (ServerItem item : items) {
+                int slot = item.getSlot();
+                max = Math.max(slot, max);
+            }
+            return getMenuSize(max+1,width);
+        }
+
+        public ServerMenu(Player player, int width, String title, HashMap<String, ServerItem> items, BiConsumer<HumanEntity,String> clickCallback) {
+            super(player, getLineCount(items.values(),width), title);
+            this.clickCallback = clickCallback;
             HashMap<String, ServerItem> allowedItems = new HashMap<>();
             for (Map.Entry<String, ServerItem> item : items.entrySet()) {
                 if (Util.hasPermission(player, "SCG.use." + item.getValue().getServerName())) {
@@ -157,7 +172,7 @@ public class Menu {
                     slot.applyFromItem(Item.builder(entry.getValue().getStack())
                             .bind(inventoryClickEvent -> {
                                 if (inventoryClickEvent.getWhoClicked() instanceof Player) {
-                                    bungee.connect((Player) inventoryClickEvent.getWhoClicked(), entry.getValue().getServerName());
+                                    clickCallback.accept(inventoryClickEvent.getWhoClicked(),entry.getValue().getServerName());
                                 }
                             }, ClickType.LEFT, ClickType.RIGHT, ClickType.MIDDLE)
                             .build());
@@ -168,7 +183,7 @@ public class Menu {
 
     @AllArgsConstructor
     @Data
-    private class ServerItem {
+    private static class ServerItem {
         private final String serverName;
         private final Integer slot;
         private final ItemStack stack;

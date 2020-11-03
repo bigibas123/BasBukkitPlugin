@@ -26,6 +26,7 @@ public class ServerChangeGui extends JavaPlugin {
     public void onLoad() {
         //ServerChangeGui.instance = this;
         log = new LogHelper(this);
+        log.INFO("Loading: "+this.getName());
         bungee = new BungeeCord(this, this.getServer().getMessenger());
         configHelper = new Config(this);
         menu = new Menu(this.getConfigHelper(),this.getBungee(), log);
@@ -33,6 +34,7 @@ public class ServerChangeGui extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        log.INFO("Enabling: "+this.getName());
         this.getServer().getPluginManager().registerEvents(new LoginListener(this.bungee),this);
         this.registerCommand("SCG", new SCGCommand(this));
         this.menu.requestUpdate();
@@ -51,6 +53,7 @@ public class ServerChangeGui extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        log.INFO("Disabling: "+this.getName());
         this.menu.save();
         this.configHelper.save();
     }

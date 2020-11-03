@@ -19,7 +19,7 @@ public class ChatHelper {
     }
 
     public static void quickNoPermission(CommandSender player, String permission) {
-        new ChatHelper(player, SEVERE).append("You dont have permission:").append(HIGHLIGHT, permission).newLine(PS)
+        new ChatHelper(player, SEVERE).append("You dont have permission: ").append(HIGHLIGHT, permission).newLine(PS)
                 .append(PS, "if you think this is in error please contact one of your server admins").send();
     }
 

@@ -2,15 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Annotation profile for ServerChangeGui" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.6/lombok-1.18.6.jar" />
+        </processorPath>
         <module name="ServerChangeGui" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ServerChangeGui" target="1.8" />
+      <module name="ServerChangeGui" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

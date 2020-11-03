@@ -4,7 +4,24 @@
 
     <groupId>com.github.bigibas123</groupId>
     <artifactId>ServerChangeGui</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <version>4.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>14</java.version>
+        <maven.version>3.0.5</maven.version>
+        <mc-version>1.16.4</mc-version>
+        <spigot-api.version>${mc-version}-R0.1-SNAPSHOT</spigot-api.version>
+        <lucko-helper.version>5.6.6</lucko-helper.version>
+        <lombok.version>1.18.6</lombok.version>
+
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+    </properties>
 
     <build>
         <plugins>
@@ -12,15 +29,23 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>${java.version}</release>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
-                <version>3.8.0</version>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -33,7 +58,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${maven-shade-plugin.version}</version>
                 <configuration>
                     <relocations>
                         <!--<relocation>
@@ -53,28 +78,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M2</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.0.5</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${maven-release-plugin.version}</version>
             </plugin>
         </plugins>
         <resources>
@@ -104,27 +109,26 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14-R0.1-SNAPSHOT</version>
+            <version>${spigot-api.version}</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.lucko</groupId>
             <artifactId>helper</artifactId>
-            <version>5.5.0</version>
+            <version>${lucko-helper.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <version>20.1.0</version>
         </dependency>
     </dependencies>
 
