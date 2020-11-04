@@ -21,6 +21,7 @@
 
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
@@ -138,6 +139,14 @@
             <email />
         </developer>
     </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub bigibas123 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/bigibas123/ServerChangeGui</url>
+        </repository>
+    </distributionManagement>
 
     <scm>
         <developerConnection>scm:git:https://github.com/bigibas123/ServerChangeGui.git</developerConnection>
