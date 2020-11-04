@@ -101,7 +101,7 @@
         </repository>
         <repository>
             <id>luck-repo</id>
-            <url>http://repo.lucko.me/</url>
+            <url>https://repo.lucko.me/</url>
         </repository>
     </repositories>
 
