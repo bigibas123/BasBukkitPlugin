@@ -20,7 +20,7 @@ public class ServerChangeGui extends JavaPlugin {
     @Getter
     public Config configHelper;
     @Getter
-    public Menu menu;
+    public IMenu menu;
 
     @Override
     public void onLoad() {

@@ -17,10 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
-public class Menu {
+public class Menu implements IMenu {
     private String title;
     private int width;
     private int lines;
@@ -49,7 +48,7 @@ public class Menu {
         return !takenSlots.contains(slot);
     }
 
-    public boolean setSlot(String server, Integer slot) {
+    public boolean setSlot(String server, int slot) {
         ServerItem si = this.items.get(server);
         if (si == null) return false;
         if (!takenSlots.contains(slot)) {
