@@ -31,17 +31,16 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
         boolean success;
         Util.hasPermission(sender, "SCG.use");
         if (args.length > 0) {
-            if ("reload".equalsIgnoreCase(args[0])) {
-                success = reload(sender);
-            } else if ("save".equalsIgnoreCase(args[0])) {
-                success = save(sender);
-            } else if ("setItem".equalsIgnoreCase(args[0])) {
-                success = setItem(sender, args);
-            } else if ("setSlot".equalsIgnoreCase(args[0])) {
-                success = setslot(sender, args);
-            } else {
-                new ChatHelper(sender, SEVERE).append("Invalid subcommand").send();
-                success = false;
+            String cmd = args[0].toLowerCase();
+            switch (cmd) {
+                case "reload" -> success = reload(sender);
+                case "save" -> success = save(sender);
+                case "setitem" -> success = setItem(sender, args);
+                case "setslot" -> success = setslot(sender, args);
+                default -> {
+                    new ChatHelper(sender, SEVERE).append("Invalid subcommand").send();
+                    success = false;
+                }
             }
         } else {
             if (sender instanceof Player) {

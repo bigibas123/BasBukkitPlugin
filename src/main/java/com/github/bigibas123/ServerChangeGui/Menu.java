@@ -21,7 +21,6 @@ import java.util.function.BiConsumer;
 
 public class Menu implements IMenu {
     private String title;
-    private int width;
     private int lines;
     private ArrayList<Integer> takenSlots;
     private HashMap<String, ServerItem> items;
@@ -77,7 +76,6 @@ public class Menu implements IMenu {
 
     public void update(Collection<String> servers) {
         title = config.getMenuTitle();
-        width = config.getMenuWidth();
         this.takenSlots = new ArrayList<>();
         this.items = new HashMap<>();
         int max = -1;
@@ -94,8 +92,8 @@ public class Menu implements IMenu {
             this.takenSlots.add(slot);
             max = Math.max(max, slot + 1);
         }
-        this.lines = Gui.getMenuSize(max, width);
-        log.FINE("width:" + width + " lines:" + lines + " taken slots:" + Arrays.toString(takenSlots.toArray()));
+        this.lines = Gui.getMenuSize(max, 9);
+        log.FINE("lines:" + lines + " taken slots:" + Arrays.toString(takenSlots.toArray()));
     }
 
     private Integer getNextOpenSlot(Integer slot) {
@@ -114,7 +112,6 @@ public class Menu implements IMenu {
     public void save() {
         Config cfg = config;
         cfg.setMenuTitle(this.title);
-        cfg.setMenuWidth(this.width);
         for (ServerItem item : this.items.values()) {
             cfg.setServerSlot(item.getServerName(), item.getSlot());
             cfg.setServerItem(item.getServerName(), item.getStack());
@@ -124,7 +121,7 @@ public class Menu implements IMenu {
 
     public void open(Player player) {
         if (this.items != null && this.items.size() > 0) {
-            ServerMenu menu = new ServerMenu(player, this.width, this.title, this.items, (ent, serverName) -> bungee.connect((PluginMessageRecipient) ent,serverName));
+            ServerMenu menu = new ServerMenu(player,  this.title, this.items, (ent, serverName) -> bungee.connect((PluginMessageRecipient) ent,serverName));
             Schedulers.sync().run(menu::open);
         } else {
             new ChatHelper(player, ChatHelper.level.WARN).append("Menu not fetched").newLine(ChatHelper.level.DEFAULT)
@@ -151,8 +148,8 @@ public class Menu implements IMenu {
             return getMenuSize(max+1,width);
         }
 
-        public ServerMenu(Player player, int width, String title, HashMap<String, ServerItem> items, BiConsumer<HumanEntity,String> clickCallback) {
-            super(player, getLineCount(items.values(),width), title);
+        public ServerMenu(Player player, String title, HashMap<String, ServerItem> items, BiConsumer<HumanEntity,String> clickCallback) {
+            super(player, getLineCount(items.values(),9), title);
             this.clickCallback = clickCallback;
             HashMap<String, ServerItem> allowedItems = new HashMap<>();
             for (Map.Entry<String, ServerItem> item : items.entrySet()) {

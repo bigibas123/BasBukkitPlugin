@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -23,11 +24,7 @@ public class Config {
 
     private String getPrefix() {
         String prefix = this.getPlugin().getDescription().getPrefix();
-        if(prefix == null) {
-            return "SCG";
-        }else {
-            return prefix;
-        }
+        return Objects.requireNonNullElse(prefix, "SCG");
     }
 
     private FileConfiguration getConfig() {
@@ -51,7 +48,7 @@ public class Config {
             ItemStack rngStack = new ItemStack(mats[new Random().nextInt(mats.length)]);
             @Nullable ItemMeta meta = rngStack.getItemMeta();
             assert meta != null;
-            meta.setDisplayName(name);
+            meta.setDisplayName("§r"+name);
             rngStack.setItemMeta(meta);
             return rngStack;
         }
@@ -73,14 +70,6 @@ public class Config {
     public Set<String> getServerList() {
 
         return getSection("server").getKeys(false);
-    }
-
-    public int getMenuWidth() {
-        return this.getSection("general", "menu").getInt("width", 9);
-    }
-
-    public void setMenuWidth(int width) {
-        this.getSection("general", "menu").set("width", width);
     }
 
     public String getMenuTitle() {
