@@ -1,7 +1,7 @@
 # ServerChangeGui
 A plugin utilising the bungee-API to create an inventory server list
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e1aeb37e091f44b48f441d0fea996320)](https://app.codacy.com/app/bigibas123/ServerChangeGui?utm_source=github.com&utm_medium=referral&utm_content=bigibas123/ServerChangeGui&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/48bc83b0f8994c01ba2378728d03840e)](https://www.codacy.com/gh/bigibas123/ServerChangeGui/dashboard)
 [![Build Status](https://travis-ci.org/bigibas123/ServerChangeGui.svg?branch=master)](https://travis-ci.org/bigibas123/ServerChangeGui)
 
  [Normal Releases](https://github.com/bigibas123/ServerChangeGui/releases "Normal Releases")
