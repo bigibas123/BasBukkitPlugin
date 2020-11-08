@@ -8,19 +8,19 @@ import java.util.Collection;
 public interface IMenu {
 	void requestUpdate();
 
-	void save();
-
 	void open(Player player);
+
+	void save();
 
 	void reload();
 
 	boolean setItem(String server, ItemStack stack);
 
-	Collection<String> getServers();
+	boolean setSlot(String server, int slot);
 
 	boolean isSlotFree(int slot);
 
-	boolean setSlot(String server, int slot);
+	Integer[] getTakenSlots();
 
-	Collection<Integer> getTakenSlots();
+	Collection<String> getServers();
 }

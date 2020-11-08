@@ -1,5 +1,6 @@
 package com.github.bigibas123.ServerChangeGui;
 
+import com.github.bigibas123.ServerChangeGui.menu.MenuManager;
 import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
 import com.github.bigibas123.ServerChangeGui.util.LogHelper;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class ServerChangeGui extends JavaPlugin {
         log.INFO("Loading: "+this.getName());
         bungee = new BungeeCord(this, this.getServer().getMessenger());
         configHelper = new Config(this);
-        menu = new Menu(this.getConfigHelper(),this.getBungee(), log);
+        menu = new MenuManager(this.getConfigHelper(),this.getBungee(), log);
     }
 
     @Override

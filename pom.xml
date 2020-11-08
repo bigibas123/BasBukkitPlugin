@@ -12,7 +12,7 @@
         <mc-version>1.16.4</mc-version>
         <spigot-api.version>${mc-version}-R0.1-SNAPSHOT</spigot-api.version>
         <lucko-helper.version>5.6.6</lucko-helper.version>
-        <lombok.version>1.18.6</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
 
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>

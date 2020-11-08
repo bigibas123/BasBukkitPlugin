@@ -29,14 +29,14 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         boolean success;
-        Util.hasPermission(sender, "SCG.use");
         if (args.length > 0) {
             String cmd = args[0].toLowerCase();
+            //TODO setTitle
             switch (cmd) {
                 case "reload" -> success = reload(sender);
                 case "save" -> success = save(sender);
                 case "setitem" -> success = setItem(sender, args);
-                case "setslot" -> success = setslot(sender, args);
+                case "setslot" -> success = setSlot(sender, args);
                 default -> {
                     new ChatHelper(sender, SEVERE).append("Invalid subcommand").send();
                     success = false;
@@ -44,7 +44,11 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             }
         } else {
             if (sender instanceof Player) {
-                plugin.getMenu().open((Player) sender);
+                if(Util.hasPermission(sender, "SCG.use")){
+                    plugin.getMenu().open((Player) sender);
+                }else{
+                    ChatHelper.quickNoPermission(sender,"SCG.use");
+                }
                 success = true;
             } else {
                 new ChatHelper(sender, SEVERE).append("This command requires arguments or to be run as a player").newLine(PS)
@@ -56,15 +60,12 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
     }
 
     private boolean reload(CommandSender sender) {
-        boolean success;
         if (Util.hasPermission(sender, "SCG.reload")) {
-            plugin.getMenu().reload();
             plugin.getMenu().reload();
         } else {
             ChatHelper.quickNoPermission(sender, "SCG.reload");
         }
-        success = true;
-        return success;
+        return true;
     }
 
     private boolean save(CommandSender sender) {
@@ -128,16 +129,14 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
         return success;
     }
 
-    private boolean setslot(CommandSender sender, String[] args) {
+    private boolean setSlot(CommandSender sender, String[] args) {
         boolean success;
-        //FIXME doesn't work properly yet
-        // Slots aren't overwritten if they're already taken
         if (Util.hasPermission(sender, "SCG.setslot")) {
             if (args.length > 2) {
                 if (Util.hasPermission(sender, "SCG.setslot." + args[1])) {
                     int slot = Integer.parseInt(args[2]);
-                    if (plugin.getMenu().isSlotFree(slot - 1)) {
-                        success = plugin.getMenu().setSlot(args[1], slot - 1);
+                    if (plugin.getMenu().isSlotFree(slot)) {
+                        success = plugin.getMenu().setSlot(args[1], slot);
                         if (success) {
                             new ChatHelper(sender, GOOD).append("Set slot of: ").append(HIGHLIGHT, args[1])
                                     .append(GOOD, " to ").append(HIGHLIGHT, Integer.valueOf(slot).toString()).send();
@@ -147,7 +146,7 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
                         }
                     } else {
                         new ChatHelper(sender, BAD).append("Slot: ").append(HIGHLIGHT, Integer.toString(slot)).append(BAD, " already taken").newLine(PS)
-                                .append("Please choose one that is not: ").append(Arrays.toString(plugin.getMenu().getTakenSlots().toArray()));
+                                .append("Please choose one that is not: ").append(Arrays.toString(plugin.getMenu().getTakenSlots())).send();
                         success = true;
                     }
                 } else {

@@ -1,6 +1,7 @@
 package com.github.bigibas123.ServerChangeGui;
 
 import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
+import me.lucko.helper.Schedulers;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -17,6 +18,6 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
-        this.bungee.playerLogin(event.getPlayer());
+        Schedulers.async().runLater(() -> this.bungee.playerLogin(event.getPlayer()),20);
     }
 }

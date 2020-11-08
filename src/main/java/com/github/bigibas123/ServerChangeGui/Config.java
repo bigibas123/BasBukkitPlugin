@@ -45,7 +45,17 @@ public class Config {
             return serverSect.getItemStack("item");
         } else {
             Material[] mats = Material.values();
-            ItemStack rngStack = new ItemStack(mats[new Random().nextInt(mats.length)]);
+            Random r = new Random();
+            Material mat = null;
+            while (mat == null){
+                Material sMat = mats[r.nextInt(mats.length)];
+                //noinspection deprecation
+                if(!sMat.name().startsWith(Material.LEGACY_PREFIX)){
+                    mat = sMat;
+                }
+            }
+            
+            ItemStack rngStack = new ItemStack(mat);
             @Nullable ItemMeta meta = rngStack.getItemMeta();
             assert meta != null;
             meta.setDisplayName("§r"+name);
@@ -60,7 +70,7 @@ public class Config {
     }
 
     public Integer getServerSlot(String name) {
-        return this.getSection("server", name).getInt("slot", 0);
+        return this.getSection("server", name).getInt("slot", -1);
     }
 
     public void setServerSlot(String name, int slot) {
