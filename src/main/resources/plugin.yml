@@ -4,6 +4,8 @@ version: ${project.version}
 authors: ['bigibas123']
 database: false
 prefix: SCG
+api-version: ${mc-api.version}
+
 softdepend:
   - helper
 commands: 

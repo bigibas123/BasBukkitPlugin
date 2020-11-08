@@ -9,8 +9,9 @@
     <properties>
         <java.version>14</java.version>
         <maven.version>3.0.5</maven.version>
-        <mc-version>1.16.4</mc-version>
-        <spigot-api.version>${mc-version}-R0.1-SNAPSHOT</spigot-api.version>
+        <mc-api.version>1.16</mc-api.version>
+        <mc.version>${mc-api.version}.4</mc.version>
+        <spigot-api.version>${mc.version}-R0.1-SNAPSHOT</spigot-api.version>
         <lucko-helper.version>5.6.6</lucko-helper.version>
         <lombok.version>1.18.16</lombok.version>
 
