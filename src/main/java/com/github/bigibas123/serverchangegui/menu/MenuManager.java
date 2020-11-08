@@ -1,10 +1,10 @@
-package com.github.bigibas123.ServerChangeGui.menu;
+package com.github.bigibas123.serverchangegui.menu;
 
-import com.github.bigibas123.ServerChangeGui.Config;
-import com.github.bigibas123.ServerChangeGui.IMenu;
-import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
-import com.github.bigibas123.ServerChangeGui.util.ChatHelper;
-import com.github.bigibas123.ServerChangeGui.util.LogHelper;
+import com.github.bigibas123.serverchangegui.Config;
+import com.github.bigibas123.serverchangegui.IMenu;
+import com.github.bigibas123.serverchangegui.util.BungeeCord;
+import com.github.bigibas123.serverchangegui.util.ChatHelper;
+import com.github.bigibas123.serverchangegui.util.LogHelper;
 import me.lucko.helper.Schedulers;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -69,6 +69,7 @@ public class MenuManager implements IMenu {
 	@Override
 	public void open(Player player) {
 		if (this.receivedUpdate) {
+			log.INFO("Opening menu with items: "+this.itemManager.getAllItems());
 			Menu menu = new Menu(player,
 					this.itemManager.getAllItems(),
 					title,

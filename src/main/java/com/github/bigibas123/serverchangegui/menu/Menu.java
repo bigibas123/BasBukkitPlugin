@@ -1,4 +1,4 @@
-package com.github.bigibas123.ServerChangeGui.menu;
+package com.github.bigibas123.serverchangegui.menu;
 
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.Item;

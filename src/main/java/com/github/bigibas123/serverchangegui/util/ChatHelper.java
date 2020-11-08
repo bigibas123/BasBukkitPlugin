@@ -1,10 +1,10 @@
-package com.github.bigibas123.ServerChangeGui.util;
+package com.github.bigibas123.serverchangegui.util;
 
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import static com.github.bigibas123.ServerChangeGui.util.ChatHelper.level.*;
+import static com.github.bigibas123.serverchangegui.util.ChatHelper.level.*;
 
 public class ChatHelper {
 

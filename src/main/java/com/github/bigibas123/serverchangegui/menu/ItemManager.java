@@ -1,13 +1,12 @@
-package com.github.bigibas123.ServerChangeGui.menu;
+package com.github.bigibas123.serverchangegui.menu;
 
-import com.github.bigibas123.ServerChangeGui.Config;
+import com.github.bigibas123.serverchangegui.Config;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
@@ -30,9 +29,7 @@ class ItemManager {
 	}
 
 	private int getNextFreeSlot() {
-		OptionalInt m = this.getSlotStream().map(v -> v + 1).max();
-		System.out.println(m);
-		return m.orElse(0);
+		return this.getSlotStream().map(v -> v + 1).max().orElse(0);
 	}
 
 	public boolean setItem(String server, ItemStack stack) {
@@ -50,7 +47,13 @@ class ItemManager {
 	}
 
 	public void reloadItems() {
-		this.map.replaceAll((s, i) -> i.withSlot(config.getServerSlot(s)).withStack(config.getServerItem(s)));
+		this.map.replaceAll((s, i) -> {
+			Integer slot = config.getServerSlot(s);
+			slot = slot == -1 ? getNextFreeSlot() : slot;
+			return i
+					.withSlot(slot)
+					.withStack(config.getServerItem(s));
+		});
 	}
 
 	public boolean isFree(int slot) {

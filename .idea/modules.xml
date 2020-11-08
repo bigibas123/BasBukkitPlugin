@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ServerChangeGui.iml" filepath="$PROJECT_DIR$/ServerChangeGui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/serverchangegui.iml" filepath="$PROJECT_DIR$/serverchangegui.iml" />
     </modules>
   </component>
 </project>

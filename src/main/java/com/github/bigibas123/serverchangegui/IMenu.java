@@ -1,4 +1,4 @@
-package com.github.bigibas123.ServerChangeGui;
+package com.github.bigibas123.serverchangegui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

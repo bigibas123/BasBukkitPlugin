@@ -1,6 +1,6 @@
-package com.github.bigibas123.ServerChangeGui.util;
+package com.github.bigibas123.serverchangegui.util;
 
-import com.github.bigibas123.ServerChangeGui.ServerChangeGui;
+import com.github.bigibas123.serverchangegui.ServerChangeGui;
 import com.google.common.collect.Iterables;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -79,12 +79,10 @@ public class BungeeCord implements PluginMessageListener {
 
     public void playerLogin(Player player) {
         if(scheduled.size() > 0) {
-            Bukkit.getScheduler().runTaskAsynchronously(this.getPlugin(), () -> {
-                scheduled.removeIf(pluginMessage -> {
-                    pluginMessage.send();
-                    return true;
-                });
-            });
+            Bukkit.getScheduler().runTaskAsynchronously(this.getPlugin(), () -> scheduled.removeIf(pluginMessage -> {
+                pluginMessage.send();
+                return true;
+            }));
         }
     }
 

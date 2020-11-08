@@ -1,4 +1,4 @@
-package com.github.bigibas123.ServerChangeGui.util;
+package com.github.bigibas123.serverchangegui.util;
 
 import org.bukkit.ChatColor;
 import org.bukkit.permissions.Permissible;

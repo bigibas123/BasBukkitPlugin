@@ -1,6 +1,6 @@
-package com.github.bigibas123.ServerChangeGui;
+package com.github.bigibas123.serverchangegui;
 
-import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
+import com.github.bigibas123.serverchangegui.util.BungeeCord;
 import me.lucko.helper.Schedulers;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

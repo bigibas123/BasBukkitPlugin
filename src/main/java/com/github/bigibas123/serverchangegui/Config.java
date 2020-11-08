@@ -1,4 +1,4 @@
-package com.github.bigibas123.ServerChangeGui;
+package com.github.bigibas123.serverchangegui;
 
 import lombok.Getter;
 import org.bukkit.Material;
@@ -50,7 +50,7 @@ public class Config {
             while (mat == null){
                 Material sMat = mats[r.nextInt(mats.length)];
                 //noinspection deprecation
-                if(!sMat.name().startsWith(Material.LEGACY_PREFIX)){
+                if(sMat.isItem() && (!sMat.name().startsWith(Material.LEGACY_PREFIX))){
                     mat = sMat;
                 }
             }

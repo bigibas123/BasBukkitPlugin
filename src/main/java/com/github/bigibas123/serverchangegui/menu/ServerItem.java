@@ -1,4 +1,4 @@
-package com.github.bigibas123.ServerChangeGui.menu;
+package com.github.bigibas123.serverchangegui.menu;
 
 import lombok.Value;
 import lombok.With;

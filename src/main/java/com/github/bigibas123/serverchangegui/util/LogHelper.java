@@ -1,11 +1,10 @@
-package com.github.bigibas123.ServerChangeGui.util;
+package com.github.bigibas123.serverchangegui.util;
 
 
-import com.github.bigibas123.ServerChangeGui.ServerChangeGui;
+import com.github.bigibas123.serverchangegui.ServerChangeGui;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.logging.Level;

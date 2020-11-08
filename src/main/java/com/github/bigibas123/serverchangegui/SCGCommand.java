@@ -1,7 +1,7 @@
-package com.github.bigibas123.ServerChangeGui;
+package com.github.bigibas123.serverchangegui;
 
-import com.github.bigibas123.ServerChangeGui.util.ChatHelper;
-import com.github.bigibas123.ServerChangeGui.util.Util;
+import com.github.bigibas123.serverchangegui.util.ChatHelper;
+import com.github.bigibas123.serverchangegui.util.Util;
 import me.lucko.helper.item.ItemStackBuilder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.github.bigibas123.ServerChangeGui.util.ChatHelper.level.*;
+import static com.github.bigibas123.serverchangegui.util.ChatHelper.level.*;
 
 public class SCGCommand implements CommandExecutor, TabCompleter {
 
@@ -33,14 +33,26 @@ public class SCGCommand implements CommandExecutor, TabCompleter {
             String cmd = args[0].toLowerCase();
             //TODO setTitle
             switch (cmd) {
-                case "reload" -> success = reload(sender);
-                case "save" -> success = save(sender);
-                case "setitem" -> success = setItem(sender, args);
-                case "setslot" -> success = setSlot(sender, args);
-                default -> {
+                case "reload":
+                    success = reload(sender);
+                    break;
+                case "save":
+                    success = save(sender);
+                    break;
+                case "setitem":
+                    success = setItem(sender, args);
+                    break;
+                case "setslot":
+                    success = setSlot(sender, args);
+                    break;
+                case "update":
+                    success = true;
+                    plugin.getMenu().requestUpdate();
+                    break;
+                default:
                     new ChatHelper(sender, SEVERE).append("Invalid subcommand").send();
                     success = false;
-                }
+                    break;
             }
         } else {
             if (sender instanceof Player) {

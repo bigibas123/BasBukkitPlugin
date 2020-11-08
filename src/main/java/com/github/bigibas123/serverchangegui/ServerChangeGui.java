@@ -1,17 +1,17 @@
-package com.github.bigibas123.ServerChangeGui;
+package com.github.bigibas123.serverchangegui;
 
-import com.github.bigibas123.ServerChangeGui.menu.MenuManager;
-import com.github.bigibas123.ServerChangeGui.util.BungeeCord;
-import com.github.bigibas123.ServerChangeGui.util.LogHelper;
+import com.github.bigibas123.serverchangegui.menu.MenuManager;
+import com.github.bigibas123.serverchangegui.util.BungeeCord;
+import com.github.bigibas123.serverchangegui.util.LogHelper;
 import lombok.Getter;
+import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 
-public class ServerChangeGui extends JavaPlugin {
+public class ServerChangeGui extends ExtendedJavaPlugin {
 
 
     @Getter
@@ -24,7 +24,7 @@ public class ServerChangeGui extends JavaPlugin {
     public IMenu menu;
 
     @Override
-    public void onLoad() {
+    protected void load() {
         //ServerChangeGui.instance = this;
         log = new LogHelper(this);
         log.INFO("Loading: "+this.getName());
@@ -34,7 +34,7 @@ public class ServerChangeGui extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {
+    protected void enable() {
         log.INFO("Enabling: "+this.getName());
         this.getServer().getPluginManager().registerEvents(new LoginListener(this.bungee),this);
         this.registerCommand("SCG", new SCGCommand(this));
@@ -53,7 +53,7 @@ public class ServerChangeGui extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
+    protected void disable() {
         log.INFO("Disabling: "+this.getName());
         this.menu.save();
         this.configHelper.save();

@@ -1,5 +1,5 @@
-name: ${project.artifactId}
-main: com.github.bigibas123.ServerChangeGui.ServerChangeGui
+name: ${project.name}
+main: com.github.bigibas123.serverchangegui.ServerChangeGui
 version: ${project.version}
 authors: ['bigibas123']
 database: false
