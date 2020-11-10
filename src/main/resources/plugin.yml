@@ -13,7 +13,7 @@ commands:
     permission: SCG.use
     description: Opens the server change gui
     permission-message: You don't have the permission &bSCG.use
-    aliases: [scg, SCG, serverchangegui]
+    aliases: [scg, serverchangegui]
     usage: /SCG [reload|save|setItem|setSlot] [server] [slot]
 
 permissions:
