@@ -52,3 +52,4 @@ permissions:
     default: op
   SCG.setslot.*:
     description: Allow to set the slot of a specific server
+    default: op
