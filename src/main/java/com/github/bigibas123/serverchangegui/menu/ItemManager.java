@@ -1,9 +1,9 @@
 package com.github.bigibas123.serverchangegui.menu;
 
 import com.github.bigibas123.serverchangegui.Config;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ class ItemManager {
 		return getSlotStream().noneMatch(value -> value == slot);
 	}
 
-	@NotNull
+	@NonNull
 	private IntStream getSlotStream() {
 		return this.map.values().stream().mapToInt(value -> value.slot);
 	}

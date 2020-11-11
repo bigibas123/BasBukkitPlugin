@@ -6,7 +6,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Random;
@@ -56,7 +55,7 @@ public class Config {
             }
             
             ItemStack rngStack = new ItemStack(mat);
-            @Nullable ItemMeta meta = rngStack.getItemMeta();
+            ItemMeta meta = rngStack.getItemMeta();
             assert meta != null;
             meta.setDisplayName("§r"+name);
             rngStack.setItemMeta(meta);

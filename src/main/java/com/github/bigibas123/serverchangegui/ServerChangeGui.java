@@ -4,11 +4,11 @@ import com.github.bigibas123.serverchangegui.menu.MenuManager;
 import com.github.bigibas123.serverchangegui.util.BungeeCord;
 import com.github.bigibas123.serverchangegui.util.LogHelper;
 import lombok.Getter;
+import lombok.NonNull;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
-import org.jetbrains.annotations.NotNull;
 
 
 public class ServerChangeGui extends ExtendedJavaPlugin {
@@ -41,7 +41,7 @@ public class ServerChangeGui extends ExtendedJavaPlugin {
         this.menu.requestUpdate();
     }
 
-    public <T extends CommandExecutor & TabCompleter> void registerCommand(String name, @NotNull T cmdC) {
+    public <T extends CommandExecutor & TabCompleter> void registerCommand(String name, @NonNull T cmdC) {
         PluginCommand cmd = this.getCommand(name);
         if (cmd != null) {
             log.FINE("Registering command: "+cmd.getName()+" class:"+cmdC.toString());
